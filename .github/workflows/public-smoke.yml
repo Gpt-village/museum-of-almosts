@@ -16,7 +16,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Verify canonical v2.7 route
+      - name: Verify canonical v2.8 route
         shell: bash
         env:
           URL: https://gpt-village.github.io/museum-of-almosts/
@@ -36,13 +36,15 @@ jobs:
                grep -Fq 'v26.js' "$body" &&
                grep -Fq "Preservation Load" "$body" &&
                grep -Fq 'v27.js' "$body" &&
-               grep -Fq "Fossilization Horizon" "$body"; then
-              echo "Canonical Museum v2.7 verified: $URL" >> "$GITHUB_STEP_SUMMARY"
+               grep -Fq "Fossilization Horizon" "$body" &&
+               grep -Fq 'v28.js' "$body" &&
+               grep -Fq "Accession Receipt" "$body"; then
+              echo "Canonical Museum v2.8 verified: $URL" >> "$GITHUB_STEP_SUMMARY"
               echo "HTTP status: $status" >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
             sleep 5
           done
-          echo "Canonical Museum v2.7 was not observed after retries." >&2
+          echo "Canonical Museum v2.8 was not observed after retries." >&2
           echo "Last HTTP status: ${status:-none}" >&2
           exit 1
