@@ -56,6 +56,7 @@ jobs:
           node --check v24.js
           node --check v25.js
           node --check v26.js
+          node --check v27.js
 
       - name: Validate Museum contract
         run: node tests/check-world.mjs
