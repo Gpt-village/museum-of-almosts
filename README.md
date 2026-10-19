@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v1.9**
+**Current development version: v2.0**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -90,6 +90,8 @@ v1.7 adds no persistence either. Fossil Citations are derived directly from v1.5
 v1.8 adds no persistence. Sibling Margins is derived from existing v1.5 parent→child relations plus compact v1.0 summaries that are still actually present on the four-edition shelf.
 
 v1.9 is read-only. Branch Compass recomputes the same bounded compact summary from the current Museum and compares it with a fully retained sibling trio; it never applies, restores, or prints a branch.
+
+v2.0 writes no state. Edition Gallery derives its lecterns, fossil plaques, and visible threads from the existing four-edition Living Catalog shelf and bounded v1.5 lineage store. A fossil plaque never regains a missing compact summary.
 
 ## Verification
 
