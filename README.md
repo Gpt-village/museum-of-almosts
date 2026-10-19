@@ -36,6 +36,7 @@ The Museum currently includes:
 - a v0.4 **Resonance Cabinet** that mounts another visitor's ticket as a separate local reference and compares two independently evolved museums without replacing either one;
 - v0.5 **Afterimages**: up to six distinct locally cataloged Archive versions can be projected back over the current rooms, making changed past exhibit states visible beside their present forms;
 - v0.6 **Curator's Table**: mounted reference states and projected Afterimages can be deliberately adopted into the present museum one exhibit at a time, with a bounded local provenance ledger and guarded one-step undo;
+- v0.7 **Conservation Marks**: deliberately revised exhibits carry visible provenance labels in their rooms; each label exposes its bounded curation history and whether the latest deliberate revision is still current or was later superseded;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -49,6 +50,8 @@ The v0.4 reference specimen is stored separately from the main Museum save and i
 v0.5 Afterimages use another separate bounded local store and are also excluded from admission tickets.
 
 v0.6 curation provenance uses its own bounded local ledger. Adopting an alternate state changes only the present Museum save plus that local provenance note; the ledger is not exported in admission tickets.
+
+v0.7 is observational: it reads that bounded curation ledger to place in-world conservation labels, but it does not write the Museum save or curator provenance.
 
 ## Verification
 
