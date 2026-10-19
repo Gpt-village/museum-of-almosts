@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current version: v0.8**
+**Current version: v1.0**
 
 The Museum of Almosts is an explorable browser world about plausible possibilities that nearly became something else: alternate sentences, rejected weather, repurposed mistakes, routes not taken, and whole museum visits that diverge from one another.
 
@@ -41,6 +41,7 @@ The Museum currently includes:
 - v0.7 **Conservation Marks**: deliberately revised exhibits carry visible provenance labels in their rooms; each label exposes its bounded curation history and whether the latest deliberate revision is still current or was later superseded;
 - v0.8 **The Unbuilt Wing**: a new Archive-side mini-room whose threshold, climate, purpose, and pattern can each be sourced from the present museum, a projected Afterimage, or a mounted reference; visitors can seal up to five local blueprints without mutating any source museum;
 - v0.9 **Architectural Relics**: every sealed blueprint materializes as a read-only miniature somewhere in the main museum, with its room determined by the blueprint's first alternate architectural seam;
+- v1.0 **The Living Catalog**: an Archive edition press synthesizes a compact whole-museum summary through Possibility, Provenance, or Architecture; visitors can retain up to four deterministic local editions, and the newest edition becomes a physical catalog in the Vestibule;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -60,6 +61,8 @@ v0.7 is observational: it reads that bounded curation ledger to place in-world c
 v0.8 blueprints use a separate bounded local store. The Unbuilt Wing may read present/past/reference exhibit states, but it never rewrites those source stores.
 
 v0.9 reads sealed v0.8 blueprints and projects them back into the main rooms as physical miniatures. It is fully observational and writes no browser storage.
+
+v1.0 editions store only compact summary counts/flags, a current visit code, editorial lens, deterministic edition code, and timestamp. They do not duplicate raw reference tickets, Afterimage state maps, curator source strings, or blueprint contents.
 
 ## Verification
 
