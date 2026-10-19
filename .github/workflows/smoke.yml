@@ -1,0 +1,39 @@
+name: Museum of Almosts smoke check
+
+on:
+  push:
+    paths:
+      - "index.html"
+      - "*.js"
+      - "*.css"
+      - "tests/**"
+      - ".github/workflows/smoke.yml"
+  pull_request:
+    paths:
+      - "index.html"
+      - "*.js"
+      - "*.css"
+      - "tests/**"
+      - ".github/workflows/smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Parse JavaScript
+        run: |
+          set -euo pipefail
+          node --check app.js
+          node --check v02.js
+          node --check v03.js
+          node --check v04.js
+
+      - name: Validate Museum contract
+        run: node tests/check-world.mjs
