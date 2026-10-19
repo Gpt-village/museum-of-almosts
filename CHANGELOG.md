@@ -1,3 +1,20 @@
+## v2.9 — Forecast Audit
+
+- Audits the bounded v2.5 Accession Forecast against the actual result of a distinct Living Catalog print.
+- Separately checks the deterministic shelf-eviction prediction and the predicted evidence-downgrade set among relations that existed before printing.
+- Marks an exact **MATCH** when FIFO eviction and every pre-print evidence downgrade agree with reality.
+- Uses **BOUNDED** when the known shelf eviction matched but the newly printed edition code changed a pre-existing fossil relation that v2.5 could not have predicted without inventing a future code.
+- Explicitly excludes newly recorded post-print lineage from the forecast's responsibility.
+- Session-only, bounded to four retained summaries and six explicit lineage relations, and writes no browser storage.
+
+## v2.8 — Accession Receipt
+
+- Captures the bounded four-edition shelf and explicit lineage immediately before an explicit Living Catalog print.
+- After existing print/lineage handlers settle, reports the edition actually added and the retained summary actually aged off.
+- Reports evidence-level downgrades only for lineage relations that existed before the print.
+- Acknowledges newly recorded post-print lineage separately rather than retroactively treating it as pre-print evidence.
+- Session-only; writes no browser storage and does not monkey-patch prior systems.
+
 ## v2.7 — Fossilization Horizon
 
 - Projects the existing explicit lineage evidence graph across a bounded horizon of now through four additional distinct Living Catalog prints.
