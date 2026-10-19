@@ -2,6 +2,28 @@
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
 
+## v1.6 — Inheritance Notes
+
+- Compares each recorded parent→child relation field-by-field while both compact edition summaries still exist on the four-edition Living Catalog shelf.
+- Uses the real parent and child summaries; lineage itself continues to retain only edition codes, lens, and timestamp.
+- When either summary ages off the shelf, detailed comparison becomes explicitly unavailable instead of being reconstructed.
+- Entirely read-only and writes no browser storage.
+- Strict live verification passed on the canonical host.
+
+## v1.5 — Edition Lineage
+
+- Records a bounded parent→child relation only when a visitor explicitly prepares a v1.4 Second Edition and then personally clicks the existing Living Catalog Print control.
+- Rejects duplicate/no-op prints and requires parent and child to use the same editorial lens.
+- Stores only parent code, child code, lens, and timestamp; edition summaries are never duplicated into lineage.
+- Keeps at most six relations in a separate local lineage store.
+
+## v1.4 — Second Edition
+
+- After every current v1.2 Walking Footnote room has been reviewed in the current page session, an outdated edition can be prepared for reissue.
+- Reuses the original Living Catalog UI and preselects the outdated edition's same editorial lens.
+- Highlights/focuses the existing Print control but never auto-prints.
+- Writes no persistent state of its own.
+
 ## v1.3 — Cross-Reference Route
 
 - Computes a deterministic shortest remaining tour through current Walking Footnote rooms using the real Museum doorway graph.
