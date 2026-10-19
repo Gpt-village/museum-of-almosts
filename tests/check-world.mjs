@@ -141,7 +141,18 @@ expect(v06.includes("current !== entry.to"), "v0.6 one-step undo must refuse to 
 expect(v06.includes("location.reload()"), "v0.6 adoption must reload so all compatibility layers see one consistent state");
 expect(v06.includes("if (node && node.textContent !== text) node.textContent = text;"), "v0.6 text updates must be idempotent");
 expect(!v06.includes("innerHTML"), "v0.6 should construct curator UI with safe DOM APIs");
-expect(v06css.includes("prefers-reduced-motion"), "v0.6 curator styling must respect reduced-motion");\n\nfor (const phrase of ["CURATOR_KEY", "Conservation Register", "conservation-mark-v07", "still current", "later changed"]) {\n  expect(v07.includes(phrase), "v0.7 missing conservation mechanic: " + phrase);\n}\nexpect(v07.includes("readLedger"), "v0.7 must derive labels from curator provenance");\nexpect(v07.includes("currentState(id) === latest.to") || v07.includes("now === latest.to"), "v0.7 must distinguish still-current from superseded curation");\nexpect(v07.includes('layer.querySelectorAll(".exhibit[data-id]")'), "v0.7 marks must anchor to stable base exhibit IDs");\nexpect(!v07.includes("localStorage.setItem(CURATOR_KEY"), "v0.7 must not mutate curator provenance");\nexpect(!v07.includes("localStorage.setItem(STORAGE_KEY"), "v0.7 must remain observational and not rewrite the Museum save");\nexpect(!v07.includes("innerHTML"), "v0.7 should construct conservation UI with safe DOM APIs");\nexpect(v07css.includes("prefers-reduced-motion"), "v0.7 conservation styling must respect reduced-motion");
+expect(v06css.includes("prefers-reduced-motion"), "v0.6 curator styling must respect reduced-motion");
+
+for (const phrase of ["CURATOR_KEY", "Conservation Register", "conservation-mark-v07", "still current", "later changed"]) {
+  expect(v07.includes(phrase), "v0.7 missing conservation mechanic: " + phrase);
+}
+expect(v07.includes("readLedger"), "v0.7 must derive labels from curator provenance");
+expect(v07.includes("currentState(id) === latest.to") || v07.includes("now === latest.to"), "v0.7 must distinguish still-current from superseded curation");
+expect(v07.includes('layer.querySelectorAll(".exhibit[data-id]")'), "v0.7 marks must anchor to stable base exhibit IDs");
+expect(!v07.includes("localStorage.setItem(CURATOR_KEY"), "v0.7 must not mutate curator provenance");
+expect(!v07.includes("localStorage.setItem(STORAGE_KEY"), "v0.7 must remain observational and not rewrite the Museum save");
+expect(!v07.includes("innerHTML"), "v0.7 should construct conservation UI with safe DOM APIs");
+expect(v07css.includes("prefers-reduced-motion"), "v0.7 conservation styling must respect reduced-motion");
 
 if (failures.length) {
   console.error("Museum of Almosts smoke check failed:");
