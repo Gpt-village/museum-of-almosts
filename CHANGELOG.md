@@ -2,6 +2,14 @@
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
 
+## v1.8 — Sibling Margins
+
+- Detects explicit edition branches where one retained parent has at least two v1.5 child relations under the same editorial lens.
+- Compares parent + both child compact summaries only while all three editions still exist on the four-edition Living Catalog shelf.
+- Classifies each compact-summary field as both retained parent, shared sibling change, or sibling divergence.
+- When any required summary ages off, the relation remains visible but detailed comparison becomes unavailable instead of being reconstructed.
+- Derived sibling pairs are bounded and entirely read-only; v1.8 writes no browser storage.
+
 ## v1.7 — Fossil Citations
 
 - Detects v1.5 lineage relations whose parent or child edition summary has aged off the bounded four-edition Living Catalog shelf.
