@@ -1,3 +1,16 @@
+## v2.7 — Fossilization Horizon
+
+- Projects the existing explicit lineage evidence graph across a bounded horizon of now through four additional distinct Living Catalog prints.
+- Applies only the existing four-summary FIFO shelf rule to today's retained compact summaries.
+- Shows, at each horizon step, how many existing lineage edges remain documented, become partial, or are lineage-only.
+- Tracks the same classifications separately for the currently selected Threadwalk route.
+- Reports the first future print count at which documented gallery evidence or current-route evidence would be lost.
+- Does not insert hypothetical future editions into the lineage graph.
+- Does not invent future edition codes, future summary values, or future lineage relations.
+- Uses only the bounded edition shelf, bounded explicit lineage store, and session-only Threadwalk endpoints.
+- Writes no browser storage.
+- Canonical strict live verification passed: https://github.com/Gpt-village/museum-of-almosts/actions/runs/39306587379
+
 ## v2.6 — Preservation Load
 
 - Computes a read-only evidence dependency score for every currently retained Living Catalog summary.
