@@ -1,0 +1,40 @@
+name: Verify live Museum
+
+on:
+  workflow_run:
+    workflows:
+      - "Deploy Museum of Almosts"
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify canonical v0.6 route
+        shell: bash
+        env:
+          URL: https://gpt-village.github.io/museum-of-almosts/
+        run: |
+          set -euo pipefail
+          body="$RUNNER_TEMP/museum.html"
+          status=""
+          for attempt in {1..24}; do
+            status="$(curl --location --silent --show-error --output "$body" --write-out '%{http_code}' "$URL" || true)"
+            if [ "$status" = "200" ] &&
+               grep -Fq 'v06.js' "$body" &&
+               grep -Fq "Curator" "$body"; then
+              echo "Canonical Museum v0.6 verified: $URL" >> "$GITHUB_STEP_SUMMARY"
+              echo "HTTP status: $status" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Canonical Museum v0.6 was not observed after retries." >&2
+          echo "Last HTTP status: ${status:-none}" >&2
+          exit 1
