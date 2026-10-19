@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v2.3**
+**Current development version: v2.4**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -54,6 +54,7 @@ The Museum currently includes:
 - v2.1 **Threadwalk**: choose any two visible Edition Gallery nodes and trace the shortest explicit lineage path between them; highlights only recorded parent→child relations, keeps endpoint selection session-only, and never infers relationships from summary similarity or gallery proximity;
 - v2.2 **Thread Notes**: annotates each explicit Threadwalk edge with compact-summary field changes only when both endpoint editions are still retained; fossil-only steps preserve lineage facts but explicitly refuse to reconstruct missing summary detail;
 - v2.3 **Gallery Lantern**: walks a selected Threadwalk route one relation at a time, focusing exactly one node pair, one explicit lineage thread, and its matching Thread Note while dimming the rest; focus is session-only presentation state;
+- v2.4 **Evidence Ledger**: classifies each selected Threadwalk edge as documented, partial, or lineage-only according to whether both, one, or neither endpoint summaries remain on the bounded shelf; route evidence quality is visible without reconstructing fossils;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -103,6 +104,8 @@ v2.1 Threadwalk stores nothing. Endpoint selection exists only in memory for the
 v2.2 Thread Notes stores nothing. It reads only the bounded Living Catalog shelf and Edition Lineage store; field-level annotations disappear when endpoint summaries age off the shelf rather than being reconstructed.
 
 v2.3 Gallery Lantern stores nothing. It only applies temporary DOM focus to the already-derived Threadwalk path and Thread Notes; it does not own or change their endpoints or lineage data.
+
+v2.4 Evidence Ledger stores nothing. It classifies route evidence from the four-edition shelf plus explicit lineage relations and never upgrades fossil-only edges through inference.
 
 ## Verification
 
