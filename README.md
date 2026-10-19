@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v1.2**
+**Current development version: v1.3**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -46,6 +46,7 @@ The Museum currently includes:
 - v1.0 **The Living Catalog**: an Archive edition press synthesizes a compact whole-museum summary through Possibility, Provenance, or Architecture; visitors can retain up to four deterministic local editions, and the newest edition becomes a physical catalog in the Vestibule;
 - v1.1 **Errata**: printed editions age visibly as the Museum changes; live comparison against the current compact summary produces current / footnote / revision / rewrite drift and a physical errata slip beside the latest Vestibule catalog.
 - v1.2 **Walking Footnotes**: current errata fields become numbered physical markers in the subsystem rooms responsible for those summary dimensions, turning edition drift into explorable geography without claiming unprovable exact-exhibit causes.
+- v1.3 **Cross-Reference Route**: computes a deterministic shortest remaining tour through current Walking Footnote rooms using the real Museum doorway graph, highlights the actual next door, and treats reviewed footnote rooms as page-session-only progress.
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -71,6 +72,8 @@ v1.0 editions store only compact summary counts/flags, a current visit code, edi
 v1.1 Errata stores nothing at all. It derives edition drift live from the existing bounded edition summary versus the current Museum summary.
 
 v1.2 Walking Footnotes also stores nothing. It maps the currently derived errata fields to subsystem locations on every refresh.
+
+v1.3 route progress is intentionally ephemeral: reviewed footnote rooms live only in an in-memory Set for the current page session. Reloading starts the route fresh.
 
 ## Verification
 
