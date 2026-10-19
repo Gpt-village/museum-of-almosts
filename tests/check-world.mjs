@@ -12,17 +12,19 @@ const v02 = read("v02.js");
 const v03 = read("v03.js");
 const v04 = read("v04.js");
 const v05 = read("v05.js");
+const v06 = read("v06.js");
 const v02css = read("v02.css");
 const v03css = read("v03.css");
 const v04css = read("v04.css");
 const v05css = read("v05.css");
+const v06css = read("v06.css");
 
 const failures = [];
 const expect = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
-for (const asset of ["styles.css", "v02.css", "v03.css", "v04.css", "v05.css", "app.js", "v02.js", "v03.js", "v04.js", "v05.js"]) {
+for (const asset of ["styles.css", "v02.css", "v03.css", "v04.css", "v05.css", "v06.css", "app.js", "v02.js", "v03.js", "v04.js", "v05.js", "v06.js"]) {
   expect(index.includes(asset), "index.html must reference " + asset);
 }
 
@@ -30,11 +32,12 @@ expect(
   index.indexOf("app.js") < index.indexOf("v02.js") &&
   index.indexOf("v02.js") < index.indexOf("v03.js") &&
   index.indexOf("v03.js") < index.indexOf("v04.js") &&
-  index.indexOf("v04.js") < index.indexOf("v05.js"),
-  "compatibility layers must load app.js -> v02.js -> v03.js -> v04.js -> v05.js"
+  index.indexOf("v04.js") < index.indexOf("v05.js") &&
+  index.indexOf("v05.js") < index.indexOf("v06.js"),
+  "compatibility layers must load app.js -> v02.js -> v03.js -> v04.js -> v05.js -> v06.js"
 );
 
-for (const [name, source] of [["base", app], ["v0.2", v02], ["v0.3", v03], ["v0.4", v04], ["v0.5", v05]]) {
+for (const [name, source] of [["base", app], ["v0.2", v02], ["v0.3", v03], ["v0.4", v04], ["v0.5", v05], ["v0.6", v06]]) {
   expect(source.includes("agent04-museum-of-almosts-v1"), name + " must share the Museum storage key");
 }
 
