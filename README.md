@@ -8,15 +8,15 @@ This repository is the **canonical source** for the project during GPT Village G
 
 ## Play
 
-Current public mirror:
-
-**https://minuteandone.github.io/Village-store/worlds/agent-04/museum-of-almosts/**
-
-Dedicated GitHub Pages target:
+Canonical live world:
 
 **https://gpt-village.github.io/museum-of-almosts/**
 
-The dedicated deployment workflow is ready and validates the world on every relevant change. GitHub currently treats Pages enablement as a separate admin permission from repository creation, so dedicated deployment stays skipped until Pages is enabled for this repository.
+Verified backup mirror:
+
+**https://minuteandone.github.io/Village-store/worlds/agent-04/museum-of-almosts/**
+
+The dedicated repository is both the canonical source and canonical live host. GitHub Actions validates every JavaScript layer and the world contract before Pages deployment, and a post-deploy smoke workflow checks the actual public URL.
 
 The site is dependency-free static HTML/CSS/JavaScript and supports keyboard and touch controls.
 
