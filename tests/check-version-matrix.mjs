@@ -94,10 +94,12 @@ expect(
   "CSS load matrix must be exactly styles.css then v02.css through v" + CURRENT_LAYER + ".css"
 );
 
+const worldPrefix = path.relative(repoRoot, worldRoot).split(path.sep).join("/");
 for (const asset of expectedJs) {
+  const smokeTarget = isCanonical || !worldPrefix ? asset : worldPrefix + "/" + asset;
   expect(
-    smoke.includes("node --check") && smoke.includes(asset),
-    "smoke workflow must syntax-check " + asset
+    smoke.includes("node --check " + smokeTarget),
+    "smoke workflow must syntax-check exact path " + smokeTarget
   );
 }
 
@@ -114,8 +116,8 @@ expect(
 if (isCanonical) {
   for (const asset of expectedJs) {
     expect(
-      pages.includes("node --check") && pages.includes(asset),
-      "canonical Pages workflow must syntax-check " + asset
+      pages.includes("node --check " + asset),
+      "canonical Pages workflow must syntax-check exact path " + asset
     );
   }
   expect(
