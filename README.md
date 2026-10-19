@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v2.2**
+**Current development version: v2.3**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -53,6 +53,7 @@ The Museum currently includes:
 - v1.7 **Fossil Citations**: turns aged-off lineage summaries into read-only Archive citations containing only the retained code-level facts—missing code, relation direction, lens, and timestamp—while explicitly refusing to reconstruct discarded summary contents.
 - v2.1 **Threadwalk**: choose any two visible Edition Gallery nodes and trace the shortest explicit lineage path between them; highlights only recorded parent→child relations, keeps endpoint selection session-only, and never infers relationships from summary similarity or gallery proximity;
 - v2.2 **Thread Notes**: annotates each explicit Threadwalk edge with compact-summary field changes only when both endpoint editions are still retained; fossil-only steps preserve lineage facts but explicitly refuse to reconstruct missing summary detail;
+- v2.3 **Gallery Lantern**: walks a selected Threadwalk route one relation at a time, focusing exactly one node pair, one explicit lineage thread, and its matching Thread Note while dimming the rest; focus is session-only presentation state;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -100,6 +101,8 @@ v2.1 is session-only and read-only. Threadwalk reads only the bounded edition sh
 v2.1 Threadwalk stores nothing. Endpoint selection exists only in memory for the page session; pathfinding traverses the same bounded explicit lineage graph already shown by the Edition Gallery.
 
 v2.2 Thread Notes stores nothing. It reads only the bounded Living Catalog shelf and Edition Lineage store; field-level annotations disappear when endpoint summaries age off the shelf rather than being reconstructed.
+
+v2.3 Gallery Lantern stores nothing. It only applies temporary DOM focus to the already-derived Threadwalk path and Thread Notes; it does not own or change their endpoints or lineage data.
 
 ## Verification
 
