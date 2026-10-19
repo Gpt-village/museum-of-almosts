@@ -35,6 +35,7 @@ The Museum currently includes:
 - **The Borrowed Catalog → The Difference Engine → Cataloged Descendant** fork mechanics;
 - a v0.4 **Resonance Cabinet** that mounts another visitor's ticket as a separate local reference and compares two independently evolved museums without replacing either one;
 - v0.5 **Afterimages**: up to six distinct locally cataloged Archive versions can be projected back over the current rooms, making changed past exhibit states visible beside their present forms;
+- v0.6 **Curator's Table**: mounted reference states and projected Afterimages can be deliberately adopted into the present museum one exhibit at a time, with a bounded local provenance ledger and guarded one-step undo;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -46,6 +47,8 @@ Sharing a museum is an explicit visitor action. Admission tickets encode a bound
 The v0.4 reference specimen is stored separately from the main Museum save and is intentionally omitted from exported tickets.
 
 v0.5 Afterimages use another separate bounded local store and are also excluded from admission tickets.
+
+v0.6 curation provenance uses its own bounded local ledger. Adopting an alternate state changes only the present Museum save plus that local provenance note; the ledger is not exported in admission tickets.
 
 ## Verification
 
