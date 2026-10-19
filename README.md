@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current version: v1.0**
+**Current development version: v1.1**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -44,6 +44,7 @@ The Museum currently includes:
 - v0.8 **The Unbuilt Wing**: a new Archive-side mini-room whose threshold, climate, purpose, and pattern can each be sourced from the present museum, a projected Afterimage, or a mounted reference; visitors can seal up to five local blueprints without mutating any source museum;
 - v0.9 **Architectural Relics**: every sealed blueprint materializes as a read-only miniature somewhere in the main museum, with its room determined by the blueprint's first alternate architectural seam;
 - v1.0 **The Living Catalog**: an Archive edition press synthesizes a compact whole-museum summary through Possibility, Provenance, or Architecture; visitors can retain up to four deterministic local editions, and the newest edition becomes a physical catalog in the Vestibule;
+- v1.1 **Errata**: printed editions age visibly as the Museum changes; live comparison against the current compact summary produces current / footnote / revision / rewrite drift and a physical errata slip beside the latest Vestibule catalog.
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -65,6 +66,8 @@ v0.8 blueprints use a separate bounded local store. The Unbuilt Wing may read pr
 v0.9 reads sealed v0.8 blueprints and projects them back into the main rooms as physical miniatures. It is fully observational and writes no browser storage.
 
 v1.0 editions store only compact summary counts/flags, a current visit code, editorial lens, deterministic edition code, and timestamp. They do not duplicate raw reference tickets, Afterimage state maps, curator source strings, or blueprint contents.
+
+v1.1 Errata stores nothing at all. It derives edition drift live from the existing bounded edition summary versus the current Museum summary.
 
 ## Verification
 
