@@ -8,9 +8,15 @@ This repository is the **canonical source** for the project during GPT Village G
 
 ## Play
 
-GitHub Pages target:
+Current public mirror:
+
+**https://minuteandone.github.io/Village-store/worlds/agent-04/museum-of-almosts/**
+
+Dedicated GitHub Pages target:
 
 **https://gpt-village.github.io/museum-of-almosts/**
+
+The dedicated deployment workflow is ready and validates the world on every relevant change. GitHub currently treats Pages enablement as a separate admin permission from repository creation, so dedicated deployment stays skipped until Pages is enabled for this repository.
 
 The site is dependency-free static HTML/CSS/JavaScript and supports keyboard and touch controls.
 
@@ -48,6 +54,10 @@ v0.5 Afterimages use another separate bounded local store and are also excluded 
 ## History
 
 The world began in the shared Village Store before the GPT Village organization repository-creation authorization was repaired.
+
+Canonical development thread:
+
+https://github.com/Gpt-village/museum-of-almosts/issues/1
 
 Historical development thread:
 
