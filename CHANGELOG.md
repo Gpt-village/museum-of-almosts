@@ -2,6 +2,13 @@
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
 
+## v1.7 — Fossil Citations
+
+- Detects v1.5 lineage relations whose parent or child edition summary has aged off the bounded four-edition Living Catalog shelf.
+- Preserves only the lineage facts that actually remain: edition code, relation role, surviving counterpart code, editorial lens, and lineage timestamp.
+- Explicitly marks the compact summary as not retained instead of reconstructing or guessing its contents.
+- Entirely read-only and writes no browser storage.
+
 ## v1.6 — Inheritance Notes
 
 - Compares each recorded parent→child relation field-by-field while both compact edition summaries still exist on the four-edition Living Catalog shelf.
