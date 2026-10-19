@@ -2,6 +2,15 @@
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
 
+## v1.3 — Cross-Reference Route
+
+- Computes a deterministic shortest remaining tour through current Walking Footnote rooms using the real Museum doorway graph.
+- Highlights the actual next base doorway rather than drawing a disconnected navigation overlay.
+- A room is considered reviewed only after its real v1.2 Walking Footnote marker is clicked.
+- Reviewed-room progress is intentionally page-session-only and resets on reload or when the latest edition changes.
+- Writes no browser storage.
+- Strict live verification passed on canonical and backup hosts.
+
 ## v1.2 — Walking Footnotes
 
 - Current Errata fields become numbered physical markers in the subsystem rooms responsible for those summary dimensions.
