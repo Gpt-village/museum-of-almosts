@@ -1,3 +1,15 @@
+## v3.2 — Calibration Parallax
+
+- Connects the original Constellation Dial back to the newer calibration sky.
+- Dial state 1 presents retained audit stars as a chronological **Flight path**.
+- Dial state 2 rearranges the exact same stars into a **House frame**.
+- Dial state 3 suppresses connecting lines as **Raw stars**.
+- MATCH / BOUNDED / CHECK facts, chronology, and retained audit count are unchanged under every reading.
+- Reads only the base Dial state and the already-rendered v3.1 constellation DOM.
+- Does not read the v3.0 Calibration Ledger directly.
+- Writes no browser storage and cannot mutate calibration evidence.
+- Explicitly treats geometry as presentation, not probability, confidence, or magnitude.
+
 ## v3.1 — Calibration Constellation
 
 - Turns the last eight bounded v3.0 Forecast Audit outcomes into a physical chronological star pattern in the Observatory.
