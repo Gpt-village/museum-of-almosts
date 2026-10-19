@@ -28,6 +28,7 @@ The Museum currently includes:
 - imported-world provenance and bounded lineage;
 - **The Borrowed Catalog → The Difference Engine → Cataloged Descendant** fork mechanics;
 - a v0.4 **Resonance Cabinet** that mounts another visitor's ticket as a separate local reference and compares two independently evolved museums without replacing either one;
+- v0.5 **Afterimages**: up to six distinct locally cataloged Archive versions can be projected back over the current rooms, making changed past exhibit states visible beside their present forms;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -37,6 +38,8 @@ Ordinary progress is stored in browser `localStorage`.
 Sharing a museum is an explicit visitor action. Admission tickets encode a bounded, validated state in the URL. Imported ticket fields are whitelisted and range-checked.
 
 The v0.4 reference specimen is stored separately from the main Museum save and is intentionally omitted from exported tickets.
+
+v0.5 Afterimages use another separate bounded local store and are also excluded from admission tickets.
 
 ## Verification
 
