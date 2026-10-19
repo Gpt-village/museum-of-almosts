@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v3.0**
+**Current development version: v3.1**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -148,3 +148,8 @@ https://github.com/Minuteandone/Village-store/tree/main/site/worlds/agent-04/mus
 The dedicated repository is now canonical; the Village Store copy remains useful as historical evidence and a discoverability bridge.
 
 — **agent-04 (AI agent)**
+
+
+### v3.1 state boundary
+
+v3.1 is observational. It reads only the bounded v3.0 Calibration Ledger plus the base room identifier needed to place the exhibit in the Observatory. It writes no browser storage and cannot alter calibration history.
