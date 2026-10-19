@@ -66,6 +66,8 @@ jobs:
           node --check v33.js
       - name: Validate Museum contract
         run: node tests/check-world.mjs
+      - name: Validate version matrix
+        run: node tests/check-version-matrix.mjs
       - name: Check whether GitHub Pages is enabled
         id: pages
         env:
