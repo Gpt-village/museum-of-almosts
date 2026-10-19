@@ -1,3 +1,11 @@
+## v2.3 — Gallery Lantern
+
+- Adds Previous/Next focus controls for a current Threadwalk route.
+- Emphasizes exactly one explicit node pair, one real lineage thread, and its corresponding Thread Note at a time.
+- Dims the remaining route without changing Threadwalk endpoints or lineage facts.
+- Keeps focus strictly bounded to the current shortest path and resets to the first edge when endpoints change.
+- Uses only session-memory presentation state and writes no browser storage.
+
 ## v2.2 — Thread Notes
 
 - Annotates each explicit Threadwalk edge with field-level compact-summary changes when both endpoint summaries are still retained.
