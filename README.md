@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v3.2**
+**Current development version: v3.3**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -158,3 +158,8 @@ v3.1 is observational. It reads only the bounded v3.0 Calibration Ledger plus th
 ### v3.2 state boundary
 
 v3.2 reads the original Constellation Dial state and reshapes only the existing v3.1 constellation DOM. It does not read the v3.0 Calibration Ledger directly, writes no browser storage, and changes presentation rather than evidence.
+
+
+### v3.3 state boundary
+
+v3.3 stores only page-session geometry in memory. It reads no browser storage, has no persistent key, and disappears on reload. It compares presentation layouts rather than calibration evidence.
