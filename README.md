@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v2.0**
+**Current development version: v2.1**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -51,6 +51,7 @@ The Museum currently includes:
 - v1.5 **Edition Lineage**: when an explicitly prepared Second Edition is personally printed, records a bounded parent→child relation using only edition codes, lens, and timestamp; ordinary prints are never guessed into a family tree.
 - v1.6 **Inheritance Notes**: compares parent and child compact summaries field-by-field only while both editions remain on the four-edition local shelf; when either summary ages off, detailed comparison becomes explicitly unavailable instead of being reconstructed.
 - v1.7 **Fossil Citations**: turns aged-off lineage summaries into read-only Archive citations containing only the retained code-level facts—missing code, relation direction, lens, and timestamp—while explicitly refusing to reconstruct discarded summary contents.
+- v2.1 **Threadwalk**: choose any two visible Edition Gallery nodes and trace the shortest explicit lineage path between them; highlights only recorded parent→child relations, keeps endpoint selection session-only, and never infers relationships from summary similarity or gallery proximity;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -92,6 +93,8 @@ v1.8 adds no persistence. Sibling Margins is derived from existing v1.5 parent�
 v1.9 is read-only. Branch Compass recomputes the same bounded compact summary from the current Museum and compares it with a fully retained sibling trio; it never applies, restores, or prints a branch.
 
 v2.0 writes no state. Edition Gallery derives its lecterns, fossil plaques, and visible threads from the existing four-edition Living Catalog shelf and bounded v1.5 lineage store. A fossil plaque never regains a missing compact summary.
+
+v2.1 Threadwalk stores nothing. Endpoint selection exists only in memory for the page session; pathfinding traverses the same bounded explicit lineage graph already shown by the Edition Gallery.
 
 ## Verification
 
