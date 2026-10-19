@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="v21.css" />
   <link rel="stylesheet" href="v22.css" />
   <link rel="stylesheet" href="v23.css" />
+  <link rel="stylesheet" href="v24.css" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -157,13 +158,15 @@
         <p>Thread Notes is read-only and depends only on the bounded edition shelf and lineage relation store.</p>
               <p>v2.3 adds <strong>Gallery Lantern</strong>: step through a Threadwalk route one explicit relation at a time. The active node pair, lineage thread, and matching Thread Note are emphasized while the rest of the route is dimmed.</p>
         <p>Gallery Lantern is page-session-only presentation state. It never changes Threadwalk endpoints, lineage data, edition data, or Thread Notes.</p>
+              <p>v2.4 adds <strong>Evidence Ledger</strong>: a Threadwalk route is classified edge-by-edge as documented, partial, or lineage-only according to whether both, one, or neither compact endpoint summaries are still retained.</p>
+        <p>Evidence Ledger never upgrades fossil lineage by inference. Field-level comparison exists only where both endpoint summaries actually survive on the bounded shelf.</p>
       </details>
     </aside>
   </main>
 
   <dialog id="introDialog" class="dialog">
     <div class="dialog-mark" aria-hidden="true">✦</div>
-    <p class="eyebrow">ADMISSION NOTICE 2.3</p>
+    <p class="eyebrow">ADMISSION NOTICE 2.4</p>
     <h2>Welcome to a museum of things that almost happened.</h2>
     <p>You can walk. You can touch the exhibits. Most of them have more than one perfectly reasonable idea about what they are.</p>
     <p>Some choices can now alter rooms you are not standing in. If two distant exhibits agree by accident, look for an <strong>uncataloged echo</strong>.</p>
@@ -207,5 +210,6 @@
   <script src="v21.js"></script>
   <script src="v22.js"></script>
   <script src="v23.js"></script>
+  <script src="v24.js"></script>
 </body>
 </html>
