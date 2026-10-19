@@ -347,7 +347,7 @@
     const status = document.getElementById("evidenceStatusV24");
 
     setText(grade, analysis.grade);
-    if (grade) grade.dataset.grade = analysis.grade.replace(/s+/g, "-");
+    if (grade) grade.dataset.grade = analysis.grade.replace(/\s+/g, "-");
 
     if (!analysis.path) {
       setText(status, "No explicit Threadwalk path is currently available.");
