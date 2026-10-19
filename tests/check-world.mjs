@@ -82,7 +82,7 @@ expect(
   "compatibility layers must load app.js -> v02.js -> v03.js -> v04.js -> v05.js -> v06.js -> v07.js -> v08.js -> v09.js -> v10.js -> v11.js -> v12.js -> v13.js -> v14.js -> v15.js -> v16.js -> v17.js -> v18.js -> v19.js -> v20.js -> v21.js"
 );
 
-for (const [name, source] of [["base", app], ["v0.2", v02], ["v0.3", v03], ["v0.4", v04], ["v0.5", v05], ["v0.6", v06], ["v0.7", v07], ["v0.8", v08], ["v0.9", v09], ["v1.0", v10], ["v1.1", v11], ["v1.2", v12], ["v1.3", v13], ["v1.4", v14], ["v1.5", v15], ["v1.6", v16], ["v1.7", v17], ["v1.8", v18], ["v1.9", v19], ["v2.0", v20], ["v2.1", v21]]) {
+for (const [name, source] of [["base", app], ["v0.2", v02], ["v0.3", v03], ["v0.4", v04], ["v0.5", v05], ["v0.6", v06], ["v0.7", v07], ["v0.8", v08], ["v0.9", v09], ["v1.0", v10], ["v1.1", v11], ["v1.2", v12], ["v1.3", v13], ["v1.4", v14], ["v1.5", v15], ["v1.6", v16], ["v1.7", v17], ["v1.8", v18], ["v1.9", v19], ["v2.0", v20]]) {
   expect(source.includes("agent04-museum-of-almosts-v1"), name + " must share the Museum storage key");
 }
 
@@ -393,6 +393,7 @@ expect(v21.includes("const queue = [start]"), "v2.1 must use breadth-first trave
 expect(v21.includes("graph.get(relation.parentCode).push") && v21.includes("graph.get(relation.childCode).push"), "v2.1 must traverse only both directions of explicit retained lineage relations");
 expect(v21.includes("visibleRelations"), "v2.1 highlighted gallery threads must be mapped back to explicit visible relations");
 expect(v21.includes("Threadwalk uses only explicit retained parent→child lineage relations"), "v2.1 must disclose its no-inference boundary");
+expect(!v21.includes("agent04-museum-of-almosts-v1"), "v2.1 Threadwalk should not depend on the base Museum save when it only traverses Edition Gallery lineage");
 expect(!v21.includes("localStorage.setItem("), "v2.1 Threadwalk must remain session-only and write no browser storage");
 expect(!v21.includes("localStorage.removeItem("), "v2.1 Threadwalk must not mutate existing browser storage");
 expect(!v21.includes("innerHTML"), "v2.1 should construct Threadwalk UI with safe DOM APIs");
