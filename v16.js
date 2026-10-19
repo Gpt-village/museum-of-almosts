@@ -31,11 +31,11 @@
   }
 
   function validSummary(summary) {
-    return Boolean(
-      summary &&
-      typeof summary === "object" &&
-      fields.every(([key]) => Object.prototype.hasOwnProperty.call(summary, key))
-    );
+    if (!summary || typeof summary !== "object") return false;
+    const numeric = ["almosts", "visitedRooms", "changes", "echoes", "afterimages", "curatedRevisions", "curatedExhibits", "blueprints"];
+    return numeric.every(key => Number.isInteger(summary[key]) && summary[key] >= 0) &&
+      typeof summary.referenceMounted === "boolean" &&
+      typeof summary.importedLineage === "boolean";
   }
 
   function editionMap() {
