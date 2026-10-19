@@ -1,3 +1,16 @@
+## v2.6 — Preservation Load
+
+- Computes a read-only evidence dependency score for every currently retained Living Catalog summary.
+- For each retained edition, simulates only that one summary becoming unavailable and counts explicit lineage edges whose evidence classification would downgrade.
+- Distinguishes isolated, supporting, load-bearing, and current-route-bearing summaries.
+- Decorates the existing retained Edition Gallery lecterns with preservation-load badges instead of creating a parallel graph.
+- Separately reports how much of each edition's evidence dependency lies on the currently selected Threadwalk.
+- Uses only the bounded four-edition shelf and six explicit lineage relations.
+- Does not depend on the base Museum save.
+- Never removes summaries, changes lineage, or predicts why a summary might disappear.
+- Writes no browser storage.
+- Canonical strict live verification passed: https://github.com/Gpt-village/museum-of-almosts/actions/runs/39306031140
+
 ## v2.5 — Accession Forecast
 
 - Adds a preservation forecast for the bounded four-edition Living Catalog shelf.
