@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v1.3**
+**Current development version: v1.4**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -47,6 +47,7 @@ The Museum currently includes:
 - v1.1 **Errata**: printed editions age visibly as the Museum changes; live comparison against the current compact summary produces current / footnote / revision / rewrite drift and a physical errata slip beside the latest Vestibule catalog.
 - v1.2 **Walking Footnotes**: current errata fields become numbered physical markers in the subsystem rooms responsible for those summary dimensions, turning edition drift into explorable geography without claiming unprovable exact-exhibit causes.
 - v1.3 **Cross-Reference Route**: computes a deterministic shortest remaining tour through current Walking Footnote rooms using the real Museum doorway graph, highlights the actual next door, and treats reviewed footnote rooms as page-session-only progress.
+- v1.4 **Second Edition**: after every current footnote room is reviewed, prepares the existing Living Catalog under the outdated edition's same editorial lens and highlights Print without ever auto-printing; publication remains an explicit visitor action.
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -74,6 +75,8 @@ v1.1 Errata stores nothing at all. It derives edition drift live from the existi
 v1.2 Walking Footnotes also stores nothing. It maps the currently derived errata fields to subsystem locations on every refresh.
 
 v1.3 route progress is intentionally ephemeral: reviewed footnote rooms live only in an in-memory Set for the current page session. Reloading starts the route fresh.
+
+v1.4 also stores no state of its own. It hands a completed footnote review back to the existing Living Catalog UI; only an explicit visitor press of the existing Print button can create the replacement local edition.
 
 ## Verification
 
