@@ -1,3 +1,14 @@
+## v3.0 — Calibration Ledger
+
+- Adds a bounded local history of at most eight Forecast Audit outcomes.
+- v2.9 emits a privacy-minimal audit event containing only verdict, shelf/evidence match booleans, downgrade counts, and timestamps.
+- Calibration Ledger records **MATCH**, **BOUNDED**, and **CHECK** outcomes without storing edition codes, relation IDs, compact summaries, or lineage graphs.
+- Summarizes shelf agreement and evidence exactness across retained audit outcomes.
+- Adds a compact calibration seal to the existing Accession Forecast panel: **VERIFIED**, **BOUNDED**, **REVIEW**, or **UNCALIBRATED**.
+- Uses its own browser-local key and keeps at most eight records.
+- Provides an explicit **clear local calibration history** control.
+- Does not read Living Catalog or Edition Lineage stores directly; all input arrives through the bounded v2.9 audit-result event.
+
 ## v2.9 — Forecast Audit
 
 - Audits the bounded v2.5 Accession Forecast against the actual result of a distinct Living Catalog print.
