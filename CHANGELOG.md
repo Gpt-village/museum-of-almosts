@@ -2,6 +2,24 @@
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
 
+## v1.2 — Walking Footnotes
+
+- Current Errata fields become numbered physical markers in the subsystem rooms responsible for those summary dimensions.
+- Collection-growth drift maps to the Conservatory; visit/lineage drift to the Vestibule; exhibit/curation drift to the Workshop; echo drift to the Observatory; Afterimage/blueprint drift to the Archive.
+- Placement is deliberately subsystem-level and does not claim an exact exhibit cause that the compact edition cannot prove.
+- Entirely derived; writes no browser storage.
+- Strict live verification passed on canonical and backup hosts.
+
+## v1.1 — Errata
+
+- Printed Living Catalog editions visibly age as the Museum changes.
+- Compares all ten compact edition-summary dimensions against the Museum now.
+- Classifies drift as Current, Footnote drift, Revision drift, or Rewrite drift.
+- The latest Vestibule catalog gains a physical errata slip while outdated.
+- Errata disappears automatically if the Museum returns to the edition's summarized state.
+- Entirely derived; writes no browser storage.
+- Strict live verification passed on canonical and backup hosts.
+
 ## v1.0.0 — The Living Catalog
 **Released:** 2026-10-19
 
