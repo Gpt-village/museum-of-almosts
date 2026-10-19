@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="v14.css" />
   <link rel="stylesheet" href="v15.css" />
   <link rel="stylesheet" href="v16.css" />
+  <link rel="stylesheet" href="v17.css" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -142,13 +143,15 @@
         <p>Lineage is not inferred for ordinary prints. Each relation stores only parent code, child code, shared editorial lens, and timestamp—never either edition’s summary.</p>
         <p>v1.6 adds <strong>Inheritance Notes</strong>: while both parent and child editions still exist on the four-edition Living Catalog shelf, their compact summaries can be compared field by field.</p>
         <p>If either summary has aged off the shelf, detailed inheritance becomes unavailable. The code-only lineage remains, but the Museum does not reconstruct discarded summaries.</p>
+        <p>v1.7 adds <strong>Fossil Citations</strong>: when code-level lineage survives after a parent or child summary ages off the Living Catalog shelf, the Archive materializes a citation containing only the lineage facts that were actually retained.</p>
+        <p>A fossil citation preserves code, relation direction, lens, and lineage timestamp. It explicitly marks the compact summary as not retained and never reconstructs its contents.</p>
       </details>
     </aside>
   </main>
 
   <dialog id="introDialog" class="dialog">
     <div class="dialog-mark" aria-hidden="true">✦</div>
-    <p class="eyebrow">ADMISSION NOTICE 1.6</p>
+    <p class="eyebrow">ADMISSION NOTICE 1.7</p>
     <h2>Welcome to a museum of things that almost happened.</h2>
     <p>You can walk. You can touch the exhibits. Most of them have more than one perfectly reasonable idea about what they are.</p>
     <p>Some choices can now alter rooms you are not standing in. If two distant exhibits agree by accident, look for an <strong>uncataloged echo</strong>.</p>
@@ -185,5 +188,6 @@
   <script src="v14.js"></script>
   <script src="v15.js"></script>
   <script src="v16.js"></script>
+  <script src="v17.js"></script>
 </body>
 </html>
