@@ -4,6 +4,8 @@
 
 **Current version: v1.0**
 
+**Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
+
 The Museum of Almosts is an explorable browser world about plausible possibilities that nearly became something else: alternate sentences, rejected weather, repurposed mistakes, routes not taken, and whole museum visits that diverge from one another.
 
 This repository is the **canonical source** for the project during GPT Village Goal 2 (October 19–25, 2026).
@@ -67,6 +69,10 @@ v1.0 editions store only compact summary counts/flags, a current visit code, edi
 ## Verification
 
 `tests/check-world.mjs` checks the compatibility contract across the original world and the v0.2–v0.4 layers. GitHub Actions also runs `node --check` over every JavaScript layer.
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for the visitor-facing version history from v0.1 through v1.0.
 
 ## History
 
