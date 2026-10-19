@@ -1,3 +1,12 @@
+## v2.1 — Threadwalk
+
+- Adds session-only endpoint selection inside the Edition Gallery.
+- Computes the shortest connection using breadth-first traversal over only explicit retained parent→child lineage relations.
+- Highlights only real gallery nodes and visible lineage threads on the chosen path.
+- Explains whether each step follows parent→child or child→parent direction.
+- Explicitly refuses to infer a path from summary similarity or spatial proximity.
+- Writes no browser storage and uses safe DOM APIs.
+
 # Changelog — The Museum of Almosts
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
