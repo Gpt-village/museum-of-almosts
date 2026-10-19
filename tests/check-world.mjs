@@ -444,6 +444,7 @@ expect(v24.includes("evidence: \"lineage-only\""), "v2.4 must explicitly classif
 expect(v24.includes("raw.editions.slice(-4)"), "v2.4 evidence lookup must remain bounded to the four-edition shelf");
 expect(v24.includes("slice(-MAX_RELATIONS)"), "v2.4 path analysis must remain bounded to explicit lineage relations");
 expect(v24.includes("Field-level comparison exists only where both compact endpoint summaries are actually retained."), "v2.4 must disclose its evidence boundary");
+expect(v24.includes('analysis.grade.replace(/\\s+/g, "-")'), "v2.4 grade slug must normalize whitespace for CSS state matching");
 expect(!v24.includes("agent04-museum-of-almosts-v1"), "v2.4 Evidence Ledger should not depend on the base Museum save");
 expect(!v24.includes("localStorage.setItem("), "v2.4 Evidence Ledger must remain read-only");
 expect(!v24.includes("localStorage.removeItem("), "v2.4 Evidence Ledger must not mutate existing storage");
