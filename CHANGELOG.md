@@ -2,6 +2,15 @@
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
 
+## v2.0 — The Edition Gallery
+
+- Adds a new Archive doorway into a spatial Edition Gallery.
+- Retained Living Catalog editions become physical lecterns; lineage codes whose compact summaries aged off the shelf become fossil plaques.
+- Explicit v1.5 parent→child relations become visible SVG threads between gallery nodes.
+- Gallery layout is derived and bounded: at most four retained edition summaries, six lineage relations, and twelve projected nodes.
+- Fossil plaques explicitly refuse to reconstruct missing summaries.
+- Entirely read-only and writes no browser storage.
+
 ## v1.9 — Branch Compass
 
 - For fully retained sibling trios, recomputes the current Museum's compact ten-field summary and compares it against the parent plus both children.
