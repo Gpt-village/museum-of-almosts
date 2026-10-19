@@ -1,3 +1,15 @@
+## v2.5 — Accession Forecast
+
+- Adds a preservation forecast for the bounded four-edition Living Catalog shelf.
+- If fewer than four compact summaries are retained, reports that one more distinct print would cause no eviction.
+- If the shelf is full, identifies exactly the oldest retained summary that would age off after one additional distinct print.
+- Reclassifies only already-recorded explicit lineage edges under that simulated shelf to show which would downgrade from documented → partial or partial → lineage-only.
+- Highlights when one of those evidence losses lies on the currently selected Threadwalk.
+- Does not invent the future edition, its compact summary, a future edition code, or any future lineage relation.
+- Reads only the bounded Living Catalog shelf, explicit bounded Edition Lineage relation store, and current session-only Threadwalk endpoint selection.
+- Writes no browser storage.
+- Canonical strict live verification passed: https://github.com/Gpt-village/museum-of-almosts/actions/runs/39305202116
+
 ## v2.4 — Evidence Ledger
 
 - Classifies each current Threadwalk edge as **documented**, **partial**, or **lineage-only**.
