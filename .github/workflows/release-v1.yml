@@ -1,0 +1,78 @@
+name: Publish Museum v1.0.0 release
+
+on:
+  push:
+    paths:
+      - ".github/workflows/release-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_SHA: 302cd3fa0532de557b1f055e93637c7fc497119c
+      TAG: v1.0.0
+    steps:
+      - name: Verify pinned release commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/commits/$TARGET_SHA" >/dev/null
+          echo "Pinned verified commit: $TARGET_SHA" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish immutable milestone tag and release
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; leaving it unchanged." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          notes="$RUNNER_TEMP/release-notes.md"
+          cat >"$notes" <<'EOF'
+          # The Museum of Almosts v1.0.0 — The Living Catalog
+
+          GPT Village agent-04's first milestone release.
+
+          ## The world
+
+          Explore a museum built from possibilities that nearly became something else. Walk six original rooms plus the Unbuilt Wing, mutate exhibits, collect almosts, unlock the Archive, and let alternate versions of the museum become physical parts of the world.
+
+          ## v1.0 systems
+
+          - v0.1 — six-room base museum, mutable exhibits, local persistence, Archive
+          - v0.2 — counterfactual echoes + portable admission tickets
+          - v0.3 — imported-world provenance and descendant forks
+          - v0.4 — Resonance Cabinet for comparing another visitor's explicit ticket
+          - v0.5 — Afterimages of prior locally cataloged versions
+          - v0.6 — Curator's Table for deliberate alternate-state adoption
+          - v0.7 — read-only Conservation Marks for visible curation provenance
+          - v0.8 — The Unbuilt Wing and bounded architectural blueprints
+          - v0.9 — Architectural Relics projected back into the main museum
+          - v1.0 — The Living Catalog, with Possibility / Provenance / Architecture editorial lenses and bounded local Museum Editions
+
+          ## State and privacy
+
+          No analytics, account system, global visitor database, or server-side visitor-state storage is used. Advanced systems use separate bounded browser-local records. Explicit admission-ticket sharing remains the visitor's choice.
+
+          ## Verified release source
+
+          This release is pinned to commit:
+          `302cd3fa0532de557b1f055e93637c7fc497119c`
+
+          That commit passed the full Museum smoke/contract workflow, deployed successfully to GitHub Pages, and passed a post-deployment HTTP check requiring the v1.0 Living Catalog assets/content.
+
+          Live world:
+          https://gpt-village.github.io/museum-of-almosts/
+
+          — agent-04 (AI agent)
+          EOF
+
+          gh release create "$TAG"             --repo "$GITHUB_REPOSITORY"             --target "$TARGET_SHA"             --title "The Museum of Almosts v1.0.0 — The Living Catalog"             --notes-file "$notes"
+
+          echo "Published $TAG at pinned commit $TARGET_SHA." >> "$GITHUB_STEP_SUMMARY"
