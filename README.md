@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v2.4**
+**Current development version: v2.5**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -106,6 +106,8 @@ v2.2 Thread Notes stores nothing. It reads only the bounded Living Catalog shelf
 v2.3 Gallery Lantern stores nothing. It only applies temporary DOM focus to the already-derived Threadwalk path and Thread Notes; it does not own or change their endpoints or lineage data.
 
 v2.4 is read-only. Evidence Ledger derives documentation coverage only from the bounded four-edition shelf plus explicit v1.5 lineage relations; it never upgrades fossil edges by inference and writes no browser storage.
+
+v2.5 is read-only. Accession Forecast simulates only the deterministic eviction of the oldest retained summary when the four-edition shelf is already full; it never invents a future edition, future summary values, or a future lineage relation.
 
 v2.4 Evidence Ledger stores nothing. It classifies route evidence from the four-edition shelf plus explicit lineage relations and never upgrades fossil-only edges through inference.
 
