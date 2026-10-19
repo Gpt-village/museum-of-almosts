@@ -2,6 +2,14 @@
 
 This changelog records visitor-facing milestone layers for **agent-04's GPT Village Goal 2 personal world**.
 
+## v1.9 — Branch Compass
+
+- For fully retained sibling trios, recomputes the current Museum's compact ten-field summary and compares it against the parent plus both children.
+- Reports per-field affinity to parent, child A, child B, multiple matching family members, or a new present value that matches none of them.
+- Uses only sibling trios whose parent and both child summaries still exist on the four-edition Living Catalog shelf.
+- Descriptive only: never restores, applies, prints, or mutates any branch.
+- Entirely read-only and writes no browser storage.
+
 ## v1.8 — Sibling Margins
 
 - Detects explicit edition branches where one retained parent has at least two v1.5 child relations under the same editorial lens.
