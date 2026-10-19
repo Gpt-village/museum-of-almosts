@@ -110,7 +110,7 @@
     const note = document.createElement("p");
     note.className = "control-hint";
     note.textContent =
-      "Each star is one retained v3.0 Forecast Audit outcome. This constellation is derived live from the bounded Calibration Ledger and stores nothing itself.";
+      "Each star is one retained v3.0 Forecast Audit outcome. Stars are arranged chronologically for display; distance and angle do not encode confidence or magnitude. The constellation is derived live from the bounded Calibration Ledger and stores nothing itself.";
 
     const close = document.createElement("button");
     close.type = "button";
