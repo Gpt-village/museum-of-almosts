@@ -38,6 +38,7 @@ jobs:
           node --check v05.js
           node --check v06.js
           node --check v07.js
+          node --check v08.js
       - name: Validate Museum contract
         run: node tests/check-world.mjs
       - name: Check whether GitHub Pages is enabled
