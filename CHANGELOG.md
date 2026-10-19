@@ -1,3 +1,13 @@
+## v3.1 — Calibration Constellation
+
+- Turns the last eight bounded v3.0 Forecast Audit outcomes into a physical chronological star pattern in the Observatory.
+- Renders MATCH, BOUNDED, and CHECK as distinct star types and connects retained outcomes in order.
+- Marks the newest retained audit and exposes its compact shelf/evidence/downgrade facts in an inspectable dialog.
+- Classifies only the latest movement relative to the previous result as improving, holding, or worsening; it does not invent a continuous confidence score.
+- Reads only the bounded v3.0 Calibration Ledger and the base room identifier required to place the exhibit.
+- Writes no browser storage and cannot mutate calibration history.
+- Uses safe DOM/SVG construction and respects reduced-motion settings.
+
 ## v3.0 — Calibration Ledger
 
 - Adds a bounded local history of at most eight Forecast Audit outcomes.
