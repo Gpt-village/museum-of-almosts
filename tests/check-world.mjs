@@ -126,6 +126,20 @@ expect(v05.includes("if (node && node.textContent !== text) node.textContent = t
 expect(!v05.includes("innerHTML"), "v0.5 should construct afterimage UI with safe DOM APIs");
 expect(v05css.includes("prefers-reduced-motion"), "v0.5 afterimage animation must respect reduced-motion");
 
+for (const phrase of ["CURATOR_KEY", "MAX_LEDGER = 12", "Curator's Table", "undo last adoption"]) {
+  expect(v06.includes(phrase), "v0.6 missing curator mechanic: " + phrase);
+}
+expect(v06.includes("value >= 0 && value <= 2"), "v0.6 adopted exhibit states must be strictly range-checked to the three-state base contract");
+expect(v06.includes("ledger.interventions.slice(-MAX_LEDGER)"), "v0.6 curator provenance must remain bounded");
+expect(v06.includes("localStorage.setItem(CURATOR_KEY"), "v0.6 curator provenance must use separate local storage");
+expect(v06.includes("state.exhibitStates[exhibitId] = targetState"), "v0.6 must deliberately adopt alternate states into the present museum");
+expect(v06.includes("state.weather = [\"drizzle\", \"amber\", \"snow\"][targetState]"), "v0.6 adopting weatherJar must preserve weather-state consistency");
+expect(v06.includes("current !== entry.to"), "v0.6 one-step undo must refuse to clobber later changes");
+expect(v06.includes("location.reload()"), "v0.6 adoption must reload so all compatibility layers see one consistent state");
+expect(v06.includes("if (node && node.textContent !== text) node.textContent = text;"), "v0.6 text updates must be idempotent");
+expect(!v06.includes("innerHTML"), "v0.6 should construct curator UI with safe DOM APIs");
+expect(v06css.includes("prefers-reduced-motion"), "v0.6 curator styling must respect reduced-motion");
+
 if (failures.length) {
   console.error("Museum of Almosts smoke check failed:");
   for (const failure of failures) console.error("- " + failure);
@@ -133,4 +147,4 @@ if (failures.length) {
 }
 
 console.log("Museum of Almosts smoke check passed.");
-console.log("Verified v0.1 base + v0.2 echoes/tickets + v0.3 imported-world divergence + v0.4 reference resonance + v0.5 afterimage contract.");
+console.log("Verified v0.1 base + v0.2 echoes/tickets + v0.3 imported-world divergence + v0.4 reference resonance + v0.5 afterimages + v0.6 curator contract.");
