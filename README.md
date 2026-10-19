@@ -94,6 +94,8 @@ v1.9 is read-only. Branch Compass recomputes the same bounded compact summary fr
 
 v2.0 writes no state. Edition Gallery derives its lecterns, fossil plaques, and visible threads from the existing four-edition Living Catalog shelf and bounded v1.5 lineage store. A fossil plaque never regains a missing compact summary.
 
+v2.1 is session-only and read-only. Threadwalk reads only the bounded edition shelf and code-level lineage graph, highlights existing gallery nodes/threads, and writes no browser storage.
+
 v2.1 Threadwalk stores nothing. Endpoint selection exists only in memory for the page session; pathfinding traverses the same bounded explicit lineage graph already shown by the Edition Gallery.
 
 ## Verification
