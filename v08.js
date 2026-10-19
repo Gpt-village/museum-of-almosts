@@ -399,6 +399,7 @@
           next.selection[part.id] = sourceName;
           writeWing(next);
           refreshWing();
+          applyArchiveNote();
         });
         buttons.append(button);
       });
@@ -435,6 +436,7 @@
         normalizeSelection(current);
         writeWing(current);
         refreshWing();
+        applyArchiveNote();
         showToast("Blueprint restored: " + blueprint.code);
       });
 
@@ -488,6 +490,7 @@
     wing.blueprints = wing.blueprints.slice(-MAX_BLUEPRINTS);
     writeWing(wing);
     refreshWing();
+    applyArchiveNote();
     showToast("Blueprint sealed: " + code);
   }
 
