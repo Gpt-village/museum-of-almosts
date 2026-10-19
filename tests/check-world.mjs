@@ -1,0 +1,117 @@
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, "..");
+const read = name => fs.readFileSync(path.join(root, name), "utf8");
+const index = read("index.html");
+const app = read("app.js");
+const v02 = read("v02.js");
+const v03 = read("v03.js");
+const v04 = read("v04.js");
+const v02css = read("v02.css");
+const v03css = read("v03.css");
+const v04css = read("v04.css");
+
+const failures = [];
+const expect = (condition, message) => {
+  if (!condition) failures.push(message);
+};
+
+for (const asset of ["styles.css", "v02.css", "v03.css", "v04.css", "app.js", "v02.js", "v03.js", "v04.js"]) {
+  expect(index.includes(asset), "index.html must reference " + asset);
+}
+
+expect(
+  index.indexOf("app.js") < index.indexOf("v02.js") &&
+  index.indexOf("v02.js") < index.indexOf("v03.js") &&
+  index.indexOf("v03.js") < index.indexOf("v04.js"),
+  "compatibility layers must load app.js -> v02.js -> v03.js -> v04.js"
+);
+
+for (const [name, source] of [["base", app], ["v0.2", v02], ["v0.3", v03], ["v0.4", v04]]) {
+  expect(source.includes("agent04-museum-of-almosts-v1"), name + " must share the Museum storage key");
+}
+
+const echoIds = ["doubleHouse", "winterSail", "lockWithoutElsewhere", "sunRoot"];
+for (const id of echoIds) expect(v02.includes('id: "' + id + '"'), "missing counterfactual echo " + id);
+
+const exhibitIds = [
+  "directory", "weatherJar", "forecastDesk", "almostEngine", "spareDrawer",
+  "constellationDial", "maybeSeed", "rootMap", "finalIndex"
+];
+for (const id of exhibitIds) expect(v02.includes('"' + id + '"'), "ticket whitelist missing exhibit " + id);
+
+const fragments = ["direction", "forecast", "uncertainty", "purpose", "reuse", "pattern", "growth", "route", "trace"];
+for (const fragment of fragments) expect(v02.includes('"' + fragment + '"'), "ticket whitelist missing fragment " + fragment);
+
+for (const weather of ["drizzle", "amber", "snow"]) {
+  expect(v02.includes('"' + weather + '"'), "ticket whitelist missing weather " + weather);
+}
+
+expect(v02.includes("allowedExhibitIds.has(key)"), "ticket decoder must whitelist exhibit IDs");
+expect(v02.includes("allowedFragments.has(value)"), "ticket decoder must whitelist fragments");
+expect(v02.includes("allowedWeather.has(payload.weather)"), "ticket decoder must whitelist weather");
+expect(v02.includes("function setText("), "v0.2 observer-safe idempotent text helper missing");
+expect(v02.includes("lastEchoSignature"), "v0.2 echo rerender guard missing");
+expect(v02.includes("sourceCode"), "portable ticket provenance source code missing");
+expect(v02.includes("lineage"), "portable ticket lineage missing");
+expect(v02.includes("history.replaceState"), "ticket import should remove payload from visible URL");
+expect(v02.includes("agent04-museum-of-almosts-coatcheck-v1"), "ticket import must define a reversible local coat check");
+expect(v02.includes("hasMeaningfulLocalMuseum"), "coat check should only snapshot a meaningful local museum before import");
+expect(v03.includes("restoreMuseumV03"), "foreign catalog dialog must expose prior-museum restore when available");
+expect(v03.includes("localStorage.removeItem(COATCHECK_KEY)"), "restoring/resetting must clear the one-step coat check");
+expect(v02.includes("currentForeign") && v02.includes("incomingForeign"), "storage shim must reconcile foreign catalog state");
+expect(v02.includes("currentForeign.forkCataloged || incomingForeign.forkCataloged"), "cataloged forks must survive later base-app saves");
+expect(v02.includes("catalogedDifferences: Math.max"), "cataloged divergence count must survive later base-app saves");
+expect(!v02.includes("innerHTML"), "v0.2 should not inject ticket data with innerHTML");
+
+for (const phrase of ["The Borrowed Catalog", "The Difference Engine", "A Cataloged Descendant"]) {
+  expect(v03.includes(phrase), "v0.3 missing foreign-catalog state: " + phrase);
+}
+expect(v03.includes("foreignCatalog"), "v0.3 foreign catalog state missing");
+expect(v03.includes("stateDifferenceCount"), "v0.3 divergence counter missing");
+expect(v03.includes("forkCataloged"), "v0.3 explicit fork catalog state missing");
+expect(v03.includes("catalogedDifferences"), "v0.3 cataloged difference count missing");
+expect(
+  v03.includes("if (note.textContent !== message) note.textContent = message;"),
+  "v0.3 Archive provenance note must be idempotent inside MutationObserver flow"
+);
+expect(v03.includes("latestForeignCatalogV03"), "v0.3 must track the newest foreign catalog across legacy saves");
+expect(v03.includes("inheritedSetItemV03"), "v0.3 must layer its preservation wrapper after earlier storage logic");
+expect(
+  v03.includes("incoming.foreignCatalog = cloneForeignCatalogV03(latestForeignCatalogV03)"),
+  "v0.3 legacy writes must retain the newest foreign catalog"
+);
+expect(
+  v03.includes("if (this === localStorage && key === STORAGE_KEY) latestForeignCatalogV03 = null"),
+  "v0.3 reset/remove must clear preserved foreign catalog authority"
+);
+expect(!v03.includes("innerHTML"), "v0.3 should construct foreign catalog UI with safe DOM APIs");
+
+expect(v02css.includes("prefers-reduced-motion"), "v0.2 echo animation must respect reduced-motion");
+expect(v03css.includes("prefers-reduced-motion"), "v0.3 foreign catalog styling must respect reduced-motion");
+
+for (const phrase of ["Resonance Cabinet", "mount reference ticket", "catalog this comparison"]) {
+  expect(v04.includes(phrase), "v0.4 missing resonance mechanic: " + phrase);
+}
+expect(v04.includes("REFERENCE_KEY"), "v0.4 must keep reference specimen state separate from the main Museum save");
+expect(v04.includes("allowedExhibitIds.includes(key)"), "v0.4 reference decoder must whitelist exhibit IDs");
+expect(v04.includes("allowedEchoIds.includes(value)"), "v0.4 reference decoder must whitelist echo IDs");
+expect(v04.includes("codePattern.test(payload.sourceCode)"), "v0.4 reference decoder must validate source visit codes");
+expect(v04.includes("reference stays local to this browser"), "v0.4 must disclose local-only reference behavior in-world");
+expect(v04.includes("function setNodeText("), "v0.4 observer-driven side panel updates must be idempotent");
+expect(v04.includes("if (node && node.textContent !== text) node.textContent = text;"), "v0.4 text helper must guard unchanged DOM writes");
+expect(!v04.includes("innerHTML"), "v0.4 should construct reference-ticket UI with safe DOM APIs");
+expect(v04css.includes("prefers-reduced-motion"), "v0.4 resonance styling must respect reduced-motion");
+
+if (failures.length) {
+  console.error("Museum of Almosts smoke check failed:");
+  for (const failure of failures) console.error("- " + failure);
+  process.exit(1);
+}
+
+console.log("Museum of Almosts smoke check passed.");
+console.log("Verified v0.1 base + v0.2 echoes/tickets + v0.3 imported-world divergence + v0.4 reference resonance contract.");
