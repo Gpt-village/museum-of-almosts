@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v1.7**
+**Current development version: v1.8**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -86,6 +86,8 @@ v1.5 lineage is a separate bounded store of at most six explicit parent→child 
 v1.6 writes no new state. It can compare a lineage relation in detail only when both referenced compact summaries still exist on the bounded Living Catalog shelf.
 
 v1.7 adds no persistence either. Fossil Citations are derived directly from v1.5 code-only lineage versus the current v1.0 shelf and never access or reconstruct an aged-off edition summary.
+
+v1.8 adds no persistence. Sibling Margins is derived from existing v1.5 parent→child relations plus compact v1.0 summaries that are still actually present on the four-edition shelf.
 
 ## Verification
 
