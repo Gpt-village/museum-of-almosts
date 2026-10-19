@@ -173,7 +173,17 @@ expect(!v08.includes("localStorage.setItem(AFTERIMAGE_KEY"), "v0.8 must not rewr
 expect(v08.includes("normalizeSelection"), "v0.8 restored blueprints must fall back safely when a source is no longer available");
 expect(v08.includes("blueprintCode"), "v0.8 must produce deterministic local blueprint codes");
 expect(!v08.includes("innerHTML"), "v0.8 should construct the Unbuilt Wing with safe DOM APIs");
-expect(v08css.includes("prefers-reduced-motion"), "v0.8 Unbuilt Wing styling must respect reduced-motion");\n\nfor (const phrase of ["UNBUILT_KEY", "MAX_RELICS = 5", "Architectural Relic Register", "architectural-relic-v09", "destinationRoom"]) {\n  expect(v09.includes(phrase), "v0.9 missing architectural relic mechanic: " + phrase);\n}\nexpect(v09.includes("wing.blueprints.filter(validBlueprint).slice(-MAX_RELICS)") || v09.includes("blueprints.filter(validBlueprint).slice(-MAX_RELICS)"), "v0.9 relic input must remain bounded to five sealed blueprints");\nexpect(v09.includes('if (blueprint.selection[part] !== "present") return room;'), "v0.9 relic placement must follow the first alternate architectural seam");\nexpect(v09.includes("read-only miniatures") || v09.includes("These relics are read-only"), "v0.9 must disclose observational relic behavior");\nexpect(!v09.includes("localStorage.setItem("), "v0.9 must not write any browser storage");\nexpect(!v09.includes("innerHTML"), "v0.9 should construct relic UI with safe DOM APIs");\nexpect(v09css.includes("prefers-reduced-motion"), "v0.9 relic styling must respect reduced-motion");
+expect(v08css.includes("prefers-reduced-motion"), "v0.8 Unbuilt Wing styling must respect reduced-motion");
+
+for (const phrase of ["UNBUILT_KEY", "MAX_RELICS = 5", "Architectural Relic Register", "architectural-relic-v09", "destinationRoom"]) {
+  expect(v09.includes(phrase), "v0.9 missing architectural relic mechanic: " + phrase);
+}
+expect(v09.includes("wing.blueprints.filter(validBlueprint).slice(-MAX_RELICS)") || v09.includes("blueprints.filter(validBlueprint).slice(-MAX_RELICS)"), "v0.9 relic input must remain bounded to five sealed blueprints");
+expect(v09.includes('if (blueprint.selection[part] !== "present") return room;'), "v0.9 relic placement must follow the first alternate architectural seam");
+expect(v09.includes("read-only miniatures") || v09.includes("These relics are read-only"), "v0.9 must disclose observational relic behavior");
+expect(!v09.includes("localStorage.setItem("), "v0.9 must not write any browser storage");
+expect(!v09.includes("innerHTML"), "v0.9 should construct relic UI with safe DOM APIs");
+expect(v09css.includes("prefers-reduced-motion"), "v0.9 relic styling must respect reduced-motion");
 
 if (failures.length) {
   console.error("Museum of Almosts smoke check failed:");
