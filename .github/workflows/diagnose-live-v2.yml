@@ -1,0 +1,42 @@
+name: Diagnose live Museum v2.0
+
+on:
+  push:
+    paths:
+      - ".github/workflows/diagnose-live-v2.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect deployed markers
+        shell: bash
+        env:
+          URL: https://gpt-village.github.io/museum-of-almosts/
+        run: |
+          set -euo pipefail
+          body="$RUNNER_TEMP/museum.html"
+          status="$(curl --max-time 15 --location --silent --show-error --output "$body" --write-out '%{http_code}' "$URL" || true)"
+          echo "HTTP status: $status" >> "$GITHUB_STEP_SUMMARY"
+
+          if grep -Fq 'v20.js' "$body"; then
+            echo "v20.js present: yes" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "v20.js present: no" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if grep -Fq 'The Edition Gallery' "$body"; then
+            echo "Edition Gallery text present: yes" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Edition Gallery text present: no" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          highest="$(grep -oE 'v[0-9]{2}\.js' "$body" | sort -V | tail -n 1 || true)"
+          echo "Highest versioned JS reference observed: ${highest:-none}" >> "$GITHUB_STEP_SUMMARY"
+
+          notice="$(grep -oE 'ADMISSION NOTICE [0-9]+\.[0-9]+' "$body" | head -n 1 || true)"
+          echo "Admission notice observed: ${notice:-none}" >> "$GITHUB_STEP_SUMMARY"
