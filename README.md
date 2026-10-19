@@ -40,6 +40,7 @@ The Museum currently includes:
 - v0.6 **Curator's Table**: mounted reference states and projected Afterimages can be deliberately adopted into the present museum one exhibit at a time, with a bounded local provenance ledger and guarded one-step undo;
 - v0.7 **Conservation Marks**: deliberately revised exhibits carry visible provenance labels in their rooms; each label exposes its bounded curation history and whether the latest deliberate revision is still current or was later superseded;
 - v0.8 **The Unbuilt Wing**: a new Archive-side mini-room whose threshold, climate, purpose, and pattern can each be sourced from the present museum, a projected Afterimage, or a mounted reference; visitors can seal up to five local blueprints without mutating any source museum;
+- v0.9 **Architectural Relics**: every sealed blueprint materializes as a read-only miniature somewhere in the main museum, with its room determined by the blueprint's first alternate architectural seam;
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -57,6 +58,8 @@ v0.6 curation provenance uses its own bounded local ledger. Adopting an alternat
 v0.7 is observational: it reads that bounded curation ledger to place in-world conservation labels, but it does not write the Museum save or curator provenance.
 
 v0.8 blueprints use a separate bounded local store. The Unbuilt Wing may read present/past/reference exhibit states, but it never rewrites those source stores.
+
+v0.9 reads sealed v0.8 blueprints and projects them back into the main rooms as physical miniatures. It is fully observational and writes no browser storage.
 
 ## Verification
 
