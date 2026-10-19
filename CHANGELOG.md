@@ -1,3 +1,11 @@
+## v2.2 — Thread Notes
+
+- Annotates each explicit Threadwalk edge with field-level compact-summary changes when both endpoint summaries are still retained.
+- Fossil-only endpoints keep explicit lineage facts while clearly marking detailed summary content as unavailable.
+- Reuses the same bounded shortest lineage path as Threadwalk.
+- Reads only the four-edition Living Catalog shelf and bounded Edition Lineage store.
+- Never reconstructs aged-off summaries and writes no browser storage.
+
 ## v2.1 — Threadwalk
 
 - Adds session-only endpoint selection inside the Edition Gallery.
