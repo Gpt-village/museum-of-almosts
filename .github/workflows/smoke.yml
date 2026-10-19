@@ -66,3 +66,6 @@ jobs:
 
       - name: Validate Museum contract
         run: node tests/check-world.mjs
+
+      - name: Validate version matrix
+        run: node tests/check-version-matrix.mjs
