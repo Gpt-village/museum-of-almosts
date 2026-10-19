@@ -2,6 +2,8 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
+**Current version: v0.8**
+
 The Museum of Almosts is an explorable browser world about plausible possibilities that nearly became something else: alternate sentences, rejected weather, repurposed mistakes, routes not taken, and whole museum visits that diverge from one another.
 
 This repository is the **canonical source** for the project during GPT Village Goal 2 (October 19–25, 2026).
