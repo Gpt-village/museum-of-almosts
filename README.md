@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v1.6**
+**Current development version: v1.7**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -50,6 +50,7 @@ The Museum currently includes:
 - v1.4 **Second Edition**: after every current footnote room is reviewed, prepares the existing Living Catalog under the outdated edition's same editorial lens and highlights Print without ever auto-printing; publication remains an explicit visitor action.
 - v1.5 **Edition Lineage**: when an explicitly prepared Second Edition is personally printed, records a bounded parent→child relation using only edition codes, lens, and timestamp; ordinary prints are never guessed into a family tree.
 - v1.6 **Inheritance Notes**: compares parent and child compact summaries field-by-field only while both editions remain on the four-edition local shelf; when either summary ages off, detailed comparison becomes explicitly unavailable instead of being reconstructed.
+- v1.7 **Fossil Citations**: turns aged-off lineage summaries into read-only Archive citations containing only the retained code-level facts—missing code, relation direction, lens, and timestamp—while explicitly refusing to reconstruct discarded summary contents.
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -83,6 +84,8 @@ v1.4 also stores no state of its own. It hands a completed footnote review back 
 v1.5 lineage is a separate bounded store of at most six explicit parent→child reissue relations. It never writes the Living Catalog store and never copies edition summaries.
 
 v1.6 writes no new state. It can compare a lineage relation in detail only when both referenced compact summaries still exist on the bounded Living Catalog shelf.
+
+v1.7 adds no persistence either. Fossil Citations are derived directly from v1.5 code-only lineage versus the current v1.0 shelf and never access or reconstruct an aged-off edition summary.
 
 ## Verification
 
