@@ -11,27 +11,30 @@ const app = read("app.js");
 const v02 = read("v02.js");
 const v03 = read("v03.js");
 const v04 = read("v04.js");
+const v05 = read("v05.js");
 const v02css = read("v02.css");
 const v03css = read("v03.css");
 const v04css = read("v04.css");
+const v05css = read("v05.css");
 
 const failures = [];
 const expect = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
-for (const asset of ["styles.css", "v02.css", "v03.css", "v04.css", "app.js", "v02.js", "v03.js", "v04.js"]) {
+for (const asset of ["styles.css", "v02.css", "v03.css", "v04.css", "v05.css", "app.js", "v02.js", "v03.js", "v04.js", "v05.js"]) {
   expect(index.includes(asset), "index.html must reference " + asset);
 }
 
 expect(
   index.indexOf("app.js") < index.indexOf("v02.js") &&
   index.indexOf("v02.js") < index.indexOf("v03.js") &&
-  index.indexOf("v03.js") < index.indexOf("v04.js"),
-  "compatibility layers must load app.js -> v02.js -> v03.js -> v04.js"
+  index.indexOf("v03.js") < index.indexOf("v04.js") &&
+  index.indexOf("v04.js") < index.indexOf("v05.js"),
+  "compatibility layers must load app.js -> v02.js -> v03.js -> v04.js -> v05.js"
 );
 
-for (const [name, source] of [["base", app], ["v0.2", v02], ["v0.3", v03], ["v0.4", v04]]) {
+for (const [name, source] of [["base", app], ["v0.2", v02], ["v0.3", v03], ["v0.4", v04], ["v0.5", v05]]) {
   expect(source.includes("agent04-museum-of-almosts-v1"), name + " must share the Museum storage key");
 }
 
@@ -108,6 +111,18 @@ expect(v04.includes("if (node && node.textContent !== text) node.textContent = t
 expect(!v04.includes("innerHTML"), "v0.4 should construct reference-ticket UI with safe DOM APIs");
 expect(v04css.includes("prefers-reduced-motion"), "v0.4 resonance styling must respect reduced-motion");
 
+for (const phrase of ["AFTERIMAGE_KEY", "MAX_SNAPSHOTS = 6", "Afterimage Projector", "Projecting "]) {
+  expect(v05.includes(phrase), "v0.5 missing afterimage mechanic: " + phrase);
+}
+expect(v05.includes("captureArchiveSnapshot"), "v0.5 must capture distinct Archive snapshots");
+expect(v05.includes("snapshotSignature"), "v0.5 must deduplicate catalog snapshots by bounded state signature");
+expect(v05.includes("archive.snapshots.slice(-MAX_SNAPSHOTS)"), "v0.5 local history must stay bounded");
+expect(v05.includes("localStorage.setItem(AFTERIMAGE_KEY"), "v0.5 afterimages must use separate local storage");
+expect(v05.includes('layer.querySelectorAll(".exhibit[data-id]")'), "v0.5 projections must target stable base exhibit IDs");
+expect(v05.includes("if (node && node.textContent !== text) node.textContent = text;"), "v0.5 observer-driven text updates must be idempotent");
+expect(!v05.includes("innerHTML"), "v0.5 should construct afterimage UI with safe DOM APIs");
+expect(v05css.includes("prefers-reduced-motion"), "v0.5 afterimage animation must respect reduced-motion");
+
 if (failures.length) {
   console.error("Museum of Almosts smoke check failed:");
   for (const failure of failures) console.error("- " + failure);
@@ -115,4 +130,4 @@ if (failures.length) {
 }
 
 console.log("Museum of Almosts smoke check passed.");
-console.log("Verified v0.1 base + v0.2 echoes/tickets + v0.3 imported-world divergence + v0.4 reference resonance contract.");
+console.log("Verified v0.1 base + v0.2 echoes/tickets + v0.3 imported-world divergence + v0.4 reference resonance + v0.5 afterimage contract.");
