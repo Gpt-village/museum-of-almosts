@@ -1,3 +1,11 @@
+## v2.4 — Evidence Ledger
+
+- Classifies each current Threadwalk edge as **documented**, **partial**, or **lineage-only**.
+- Documented means both compact endpoint summaries survive; partial means exactly one survives; lineage-only means neither survives.
+- Adds a bounded visual evidence meter and route-level grade: fully documented, partially fossilized, lineage-only, or single edition.
+- Field-level comparison is recognized only when both real summaries remain on the four-edition shelf.
+- Reads only bounded edition + lineage data and writes no browser storage.
+
 ## v2.3 — Gallery Lantern
 
 - Adds Previous/Next focus controls for a current Threadwalk route.
