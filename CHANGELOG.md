@@ -1,3 +1,14 @@
+## v3.3 — Parallax Trace
+
+- Adds a session-only visual comparison between two Calibration Parallax readings.
+- Visitors can pin the current v3.2 geometry, turn the original Constellation Dial, and see the pinned arrangement as a ghost SVG trace over the new reading.
+- The trace stores only star coordinates and the pinned presentation name in page memory.
+- It reads no browser storage and does not access any persistent Museum key.
+- It does not copy MATCH / BOUNDED / CHECK outcomes or calibration records.
+- Reloading clears the trace completely.
+- Uses the existing v3.1/v3.2 constellation DOM rather than recomputing evidence.
+- Uses safe DOM/SVG construction and respects reduced-motion settings.
+
 ## v3.2 — Calibration Parallax
 
 - Connects the original Constellation Dial back to the newer calibration sky.
