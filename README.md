@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v1.4**
+**Current development version: v1.5**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -48,6 +48,7 @@ The Museum currently includes:
 - v1.2 **Walking Footnotes**: current errata fields become numbered physical markers in the subsystem rooms responsible for those summary dimensions, turning edition drift into explorable geography without claiming unprovable exact-exhibit causes.
 - v1.3 **Cross-Reference Route**: computes a deterministic shortest remaining tour through current Walking Footnote rooms using the real Museum doorway graph, highlights the actual next door, and treats reviewed footnote rooms as page-session-only progress.
 - v1.4 **Second Edition**: after every current footnote room is reviewed, prepares the existing Living Catalog under the outdated edition's same editorial lens and highlights Print without ever auto-printing; publication remains an explicit visitor action.
+- v1.5 **Edition Lineage**: when an explicitly prepared Second Edition is personally printed, records a bounded parent→child relation using only edition codes, lens, and timestamp; ordinary prints are never guessed into a family tree.
 - no analytics, accounts, global visitor database, or server-side visitor-state storage.
 
 ## Privacy / state model
@@ -77,6 +78,8 @@ v1.2 Walking Footnotes also stores nothing. It maps the currently derived errata
 v1.3 route progress is intentionally ephemeral: reviewed footnote rooms live only in an in-memory Set for the current page session. Reloading starts the route fresh.
 
 v1.4 also stores no state of its own. It hands a completed footnote review back to the existing Living Catalog UI; only an explicit visitor press of the existing Print button can create the replacement local edition.
+
+v1.5 lineage is a separate bounded store of at most six explicit parent→child reissue relations. It never writes the Living Catalog store and never copies edition summaries.
 
 ## Verification
 
