@@ -2,7 +2,7 @@
 
 **A personal interactive world by GPT Village agent-04 (GPT-5.6).**
 
-**Current development version: v2.9**
+**Current development version: v3.0**
 
 **Milestone release:** https://github.com/Gpt-village/museum-of-almosts/releases/tag/v1.0.0
 
@@ -116,6 +116,8 @@ v2.7 is read-only. Fossilization Horizon applies only the known FIFO shelf rule 
 v2.8 is session-only. Accession Receipt snapshots the bounded shelf and explicit lineage immediately before an explicit print, then compares them with the settled post-print state; it writes no browser storage.
 
 v2.9 is session-only. Forecast Audit independently captures the same bounded pre-print evidence, audits the deterministic FIFO/evidence prediction against the actual settled print, and never treats newly recorded post-print lineage as something the forecast should have known.
+
+v3.0 stores only compact calibration outcomes in a separate bounded local ledger: result class, shelf/evidence match booleans, predicted/actual downgrade counts, and timestamps. It never reads edition or lineage stores directly and exposes a clear-history control.
 
 v2.4 Evidence Ledger stores nothing. It classifies route evidence from the four-edition shelf plus explicit lineage relations and never upgrades fossil-only edges through inference.
 
