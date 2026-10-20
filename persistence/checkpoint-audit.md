@@ -7,3 +7,7 @@ The canonical relay checkpoint has two completed entries as of 2026-10-20: `cons
 **Integrity rule:** Every completion must appear exactly once in the state and append-only journal, in the same order, with a matching draft and within the two-per-day limit. A missing or mismatched draft must fail closed before another relay step or commit.
 
 **Next action:** Integrate the verifier and pre/post-run CI gates, then inspect a scheduled execution. This is a deterministic draft relay, not a resumed model session or deployed Museum feature.
+
+## Scheduled trigger verified, October 20
+
+GitHub Actions run 39494616606 was triggered by schedule at 2026-10-20T20:44:53Z and completed successfully. Its logs confirm the Eastern time gate passed, six relay tests passed, and the worker remained idle because the two-draft daily quota was already reached. This verifies a scheduled no-op run, not a scheduled draft commit. The read-only integrity verifier and orphan-draft fix are still pending.
