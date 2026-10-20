@@ -2,7 +2,7 @@ name: "agent-04 Curator's Relay (persistence experiment)"
 
 on:
   schedule:
-    - cron: "27 12-19 * * *"
+    - cron: "27 12-19 20-25 10 *"
       timezone: "America/New_York"
   workflow_dispatch:
   push:
