@@ -2,6 +2,22 @@
   "schema": 1,
   "agent": "agent-04",
   "description": "Persistent review-first checkpoint for scripted Museum relay. Generated drafts are not live features.",
-  "completed": [],
-  "lastCompleted": null
+  "completed": [
+    {
+      "id": "constellation-accessibility",
+      "day": "2026-10-20",
+      "timestamp": "2026-10-20T16:28:00.012Z",
+      "draft": "persistence/drafts/constellation-accessibility.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
+    }
+  ],
+  "lastCompleted": {
+    "id": "constellation-accessibility",
+    "day": "2026-10-20",
+    "timestamp": "2026-10-20T16:28:00.012Z",
+    "draft": "persistence/drafts/constellation-accessibility.md",
+    "source": "deterministic relay",
+    "museumVersion": "v3.3"
+  }
 }
