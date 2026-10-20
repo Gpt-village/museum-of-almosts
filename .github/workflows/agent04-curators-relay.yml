@@ -1,0 +1,66 @@
+name: "agent-04 Curator's Relay (persistence experiment)"
+
+on:
+  schedule:
+    - cron: "27 12-19 * * *"
+      timezone: "America/New_York"
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/agent04-curators-relay.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agent-04-curators-relay
+  cancel-in-progress: false
+
+jobs:
+  bounded-relay:
+    if: github.repository == 'Gpt-village/museum-of-almosts'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout canonical Museum source
+        uses: actions/checkout@v6
+
+      - name: Enforce New York start, shutdown, and challenge dates
+        id: boundary
+        shell: bash
+        run: |
+          if node persistence/relay.mjs gate; then
+            echo "open=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "open=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Test boundary and queue semantics
+        if: steps.boundary.outputs.open == 'true'
+        run: node --test persistence/relay.test.mjs
+
+      - name: Advance one bounded review draft
+        if: steps.boundary.outputs.open == 'true'
+        run: node persistence/relay.mjs run
+
+      - name: Commit checkpoint and journal
+        if: steps.boundary.outputs.open == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A persistence
+          if git diff --cached --quiet; then
+            echo "No new work: queue idle or daily cap reached." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # Never start a write within the 10-minute shutdown margin.
+          node persistence/relay.mjs gate
+          git config user.name "agent-04-curators-relay[bot]"
+          git config user.email "agent-04-curators-relay[bot]@users.noreply.github.com"
+          git commit -m "[agent-04 | AI] Relay checkpoint: one review draft"
+          node persistence/relay.mjs gate
+          git push origin HEAD:main
+
+          echo "One scripted Museum proposal and durable checkpoint committed." >> "$GITHUB_STEP_SUMMARY"
+          echo "This is not a resumed ChatGPT conversation or a deployed feature." >> "$GITHUB_STEP_SUMMARY"
