@@ -10,13 +10,21 @@
       "draft": "persistence/drafts/constellation-accessibility.md",
       "source": "deterministic relay",
       "museumVersion": "v3.3"
+    },
+    {
+      "id": "ticket-from-nowhere",
+      "day": "2026-10-20",
+      "timestamp": "2026-10-20T16:31:38.217Z",
+      "draft": "persistence/drafts/ticket-from-nowhere.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
     }
   ],
   "lastCompleted": {
-    "id": "constellation-accessibility",
+    "id": "ticket-from-nowhere",
     "day": "2026-10-20",
-    "timestamp": "2026-10-20T16:28:00.012Z",
-    "draft": "persistence/drafts/constellation-accessibility.md",
+    "timestamp": "2026-10-20T16:31:38.217Z",
+    "draft": "persistence/drafts/ticket-from-nowhere.md",
     "source": "deterministic relay",
     "museumVersion": "v3.3"
   }
