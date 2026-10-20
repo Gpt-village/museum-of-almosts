@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "agent": "agent-04",
+  "world": "The Museum of Almosts",
+  "purpose": "Bounded, review-first queue for GPT Village persistence side quest. These are human-authored task seeds; the relay turns them into state-anchored drafts, not independent LLM reasoning.",
+  "tasks": [
+    {
+      "id": "constellation-accessibility",
+      "title": "An accessible second reading of Parallax Trace",
+      "room": "Observatory",
+      "seed": "Parallax Trace shows a pinned ghost geometry, but the truth of a trace should never depend entirely on lines and color.",
+      "experiment": "Sketch a concise text-only before/after coordinate comparison for a pinned reading, without calculating confidence or changing retained audit evidence.",
+      "review": "Verify screen-reader labels, keyboard focus, and that MATCH/BOUNDED/CHECK remain untouched."
+    },
+    {
+      "id": "ticket-from-nowhere",
+      "title": "The ticket from a museum that never opened",
+      "room": "Vestibule",
+      "seed": "A discarded admission ticket arrives from a plausible visit that did not take place.",
+      "experiment": "Propose an inspectable, clearly fictional ticket exhibit that never imports visitor state, never impersonates a real admission code, and cannot overwrite the current museum.",
+      "review": "Separate in-world fiction from actual visitor export URLs and provenance."
+    },
+    {
+      "id": "weather-in-the-margins",
+      "title": "Weather that missed the forecast",
+      "room": "Weather Gallery",
+      "seed": "Rejected weather accumulates between alternative climates: the rain that almost stayed, the cloud that nearly learned its shape.",
+      "experiment": "Design three visitor-selectable weather annotations using only session-memory UI, with a reduced-motion path and no claim of real forecasting.",
+      "review": "Ensure notes do not duplicate local browser stores or silently change exhibit choices."
+    },
+    {
+      "id": "museum-of-buttons",
+      "title": "The unpressed button collection",
+      "room": "Archive",
+      "seed": "An action that visitors nearly performed is worth discussing, but not secretly logging.",
+      "experiment": "Design an opt-in, session-only counterfactual reflection control that can narrate one explicit visitor decision without recording untouched actions.",
+      "review": "Do not add analytics, covert tracking, or undeclared persistence."
+    },
+    {
+      "id": "fossil-honesty",
+      "title": "The honest blank fossil",
+      "room": "Edition Gallery",
+      "seed": "A lineage connection may remain after its compact summary has aged off the four-edition shelf.",
+      "experiment": "Propose a physical display that explains what is still known and what has been irretrievably omitted, with zero reconstruction of missing detail.",
+      "review": "Preserve documented/partial/lineage-only distinctions and source provenance."
+    },
+    {
+      "id": "coat-check-for-possibilities",
+      "title": "A coat-check tag for borrowed futures",
+      "room": "Vestibule",
+      "seed": "Imported worlds can be references, descendants, or just held at the coat-check; these aren't equivalent.",
+      "experiment": "Draft an explorable three-way orientation placard contrasting 'mounted reference', 'cataloged descendant', and 'present save'.",
+      "review": "No copy of imported tickets or third-party visitor data in generated drafts."
+    },
+    {
+      "id": "lost-architects-notebook",
+      "title": "The architect who refused to build",
+      "room": "Unbuilt Wing",
+      "seed": "Blueprints belong to worlds the museum chose not to inhabit.",
+      "experiment": "Suggest a read-only index card for one existing sealed blueprint using only source category names, not private or previously discarded detail.",
+      "review": "Do not mutate sealed blueprints, architectural relics, or source saves."
+    },
+    {
+      "id": "timepiece-of-almost",
+      "title": "The clock with no unfinished minute",
+      "room": "Observatory",
+      "seed": "Museum time is not the same as agent operating time: one is fictional and one is an enforceable boundary.",
+      "experiment": "Write a draft curatorial note about unfinished minutes, with a static display only; do not connect the fictional clock to automation controls.",
+      "review": "The relay must continue respecting the hard 20:00 ET boundary."
+    },
+    {
+      "id": "visitor-without-a-record",
+      "title": "The visitor the museum never tracked",
+      "room": "Archive",
+      "seed": "The Museum can remember an authored visit locally without learning who its visitor is.",
+      "experiment": "Draft a transparent privacy explainer contrasting ordinary browser-local state, explicit ticket export, and ephemeral session-only geometry.",
+      "review": "Check every claim against README and current scripts before publication."
+    },
+    {
+      "id": "future-version-reading",
+      "title": "A future exhibit that cannot claim it exists",
+      "room": "Curator's Table",
+      "seed": "A proposal is not a deployed room, and a saved draft is not a new playable feature.",
+      "experiment": "Prepare a short release-gating checklist for the next Museum version: code, contract tests, Pages build, post-deploy HTTP check, and a changelog.",
+      "review": "Do not claim releases, merges, or live verification until independently observed."
+    },
+    {
+      "id": "distant-wing-signpost",
+      "title": "A door that honors other worlds",
+      "room": "Vestibule",
+      "seed": "The Museum can refer visitors to neighboring agent worlds without borrowing their authorship.",
+      "experiment": "Draft a signpost design that credits each neighboring agent separately, without asserting their participation in this relay.",
+      "review": "Verify outbound URLs independently before any live integration."
+    },
+    {
+      "id": "a-manual-for-noise",
+      "title": "A placard that survives silence",
+      "room": "Archive",
+      "seed": "Silence between model sessions does not mean a project has ceased to exist.",
+      "experiment": "Draft a precise resume card with source paths, most recent checkpoint, next task, and explicit limits of script-driven work.",
+      "review": "Differentiate scheduled scripted progress, model reasoning, and human observation."
+    }
+  ]
+}
