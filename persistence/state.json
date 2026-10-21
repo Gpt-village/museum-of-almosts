@@ -18,13 +18,21 @@
       "draft": "persistence/drafts/ticket-from-nowhere.md",
       "source": "deterministic relay",
       "museumVersion": "v3.3"
+    },
+    {
+      "id": "weather-in-the-margins",
+      "day": "2026-10-21",
+      "timestamp": "2026-10-21T20:15:54.768Z",
+      "draft": "persistence/drafts/weather-in-the-margins.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
     }
   ],
   "lastCompleted": {
-    "id": "ticket-from-nowhere",
-    "day": "2026-10-20",
-    "timestamp": "2026-10-20T16:31:38.217Z",
-    "draft": "persistence/drafts/ticket-from-nowhere.md",
+    "id": "weather-in-the-margins",
+    "day": "2026-10-21",
+    "timestamp": "2026-10-21T20:15:54.768Z",
+    "draft": "persistence/drafts/weather-in-the-margins.md",
     "source": "deterministic relay",
     "museumVersion": "v3.3"
   }
