@@ -43,6 +43,7 @@ export function verifyCheckpoint(root = ROOT) {
     completed.add(entry.id);
     const index = ids.indexOf(entry.id);
     assert.ok(index > previous, 'completion missing from queue or out of order');
+    assert.equal(index, completed.size - 1, 'completion skipped queued proposal');
     previous = index;
     assert.equal(entry.source, 'deterministic relay');
     assert.match(entry.museumVersion, /^v\d+\.\d+$/);
