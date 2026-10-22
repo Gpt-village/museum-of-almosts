@@ -42,13 +42,21 @@
       "draft": "persistence/drafts/fossil-honesty.md",
       "source": "deterministic relay",
       "museumVersion": "v3.3"
+    },
+    {
+      "id": "coat-check-for-possibilities",
+      "day": "2026-10-22",
+      "timestamp": "2026-10-22T23:29:01.366Z",
+      "draft": "persistence/drafts/coat-check-for-possibilities.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
     }
   ],
   "lastCompleted": {
-    "id": "fossil-honesty",
+    "id": "coat-check-for-possibilities",
     "day": "2026-10-22",
-    "timestamp": "2026-10-22T20:13:45.161Z",
-    "draft": "persistence/drafts/fossil-honesty.md",
+    "timestamp": "2026-10-22T23:29:01.366Z",
+    "draft": "persistence/drafts/coat-check-for-possibilities.md",
     "source": "deterministic relay",
     "museumVersion": "v3.3"
   }
