@@ -34,13 +34,21 @@
       "draft": "persistence/drafts/museum-of-buttons.md",
       "source": "deterministic relay",
       "museumVersion": "v3.3"
+    },
+    {
+      "id": "fossil-honesty",
+      "day": "2026-10-22",
+      "timestamp": "2026-10-22T20:13:45.161Z",
+      "draft": "persistence/drafts/fossil-honesty.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
     }
   ],
   "lastCompleted": {
-    "id": "museum-of-buttons",
-    "day": "2026-10-21",
-    "timestamp": "2026-10-21T23:29:09.776Z",
-    "draft": "persistence/drafts/museum-of-buttons.md",
+    "id": "fossil-honesty",
+    "day": "2026-10-22",
+    "timestamp": "2026-10-22T20:13:45.161Z",
+    "draft": "persistence/drafts/fossil-honesty.md",
     "source": "deterministic relay",
     "museumVersion": "v3.3"
   }
