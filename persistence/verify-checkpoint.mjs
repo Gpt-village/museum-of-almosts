@@ -6,6 +6,9 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+// The twelve task seeds form an approved finite plan, not an editable live queue.
+// Changing them requires an explicit review and rebaseline of this invariant.
+const APPROVED_QUEUE_SHA256 = '97dfa627afd6f927263e74ba0b67363d9dc78ef59d023ec7924bd5e5b1e3cf57';
 
 function easternDay(date) {
   const fields = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
@@ -18,7 +21,10 @@ function easternDay(date) {
 export function verifyCheckpoint(root = ROOT) {
   const dir = path.join(root, 'persistence');
   const read = name => JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
-  const queue = read('tasks.json');
+  const queueBytes = fs.readFileSync(path.join(dir, 'tasks.json'));
+  assert.equal(createHash('sha256').update(queueBytes).digest('hex'), APPROVED_QUEUE_SHA256,
+    'bounded task queue altered; requires explicit reviewed rebaseline');
+  const queue = JSON.parse(queueBytes.toString('utf8'));
   const state = read('state.json');
   const journalRaw = fs.readFileSync(path.join(dir, 'journal.jsonl'), 'utf8');
   const journal = journalRaw.trim() ? journalRaw.trim().split('\n').map(line => JSON.parse(line)) : [];
