@@ -48,13 +48,18 @@ function readJson(filename) {
 function museumVersion() {
   const readme = fs.readFileSync(path.join(ROOT, "README.md"), "utf8");
   const match = readme.match(/Current development version:\s*(v\d+\.\d+)/i);
-  const version = match ? match[1] : "unverified version";
-  const script = version === "unverified version" ? null : "v" + version.slice(1).replace(".", "").padStart(2, "0") + ".js";
-  const source = script && fs.existsSync(path.join(ROOT, script)) ? script : null;
-  const digest = source
-    ? createHash("sha256").update(fs.readFileSync(path.join(ROOT, source))).digest("hex").slice(0, 12)
-    : "not determined";
-  return { version, source: source || "not determined", digest };
+  // Fail before creating a draft when the Museum's provenance cannot be verified.
+  // A placeholder version/script would create an invalid checkpoint that the
+  // post-run verifier rejects only after the worker has mutated local files.
+  if (!match) throw new Error("Museum version preflight failed: README version missing");
+  const version = match[1];
+  const script = "v" + version.slice(1).replace(".", "").padStart(2, "0") + ".js";
+  const scriptPath = path.join(ROOT, script);
+  if (!fs.existsSync(scriptPath) || !fs.statSync(scriptPath).isFile()) {
+    throw new Error("Museum version preflight failed: version script missing: " + script);
+  }
+  const digest = createHash("sha256").update(fs.readFileSync(scriptPath)).digest("hex").slice(0, 12);
+  return { version, source: script, digest };
 }
 
 function renderDraft(task, version, now) {
