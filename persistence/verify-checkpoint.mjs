@@ -33,6 +33,11 @@ export function verifyCheckpoint(root = ROOT) {
   const ids = queue.tasks.map(x => x.id);
   assert.ok(ids.every(x => typeof x === 'string' && ID.test(x)), 'unsafe task ID');
   assert.equal(new Set(ids).size, ids.length, 'duplicate task ID');
+  for (const task of queue.tasks) {
+    for (const key of ['title', 'room', 'seed', 'experiment', 'review']) {
+      assert.ok(typeof task[key] === 'string' && task[key].trim(), 'malformed queued proposal: ' + task.id);
+    }
+  }
   const completed = new Set();
   const days = new Map();
   let previous = -1;
@@ -71,9 +76,32 @@ export function verifyCheckpoint(root = ROOT) {
     assert.ok(draft.includes(`- **Created:** ${entry.timestamp}\n`), 'draft timestamp mismatch');
     assert.ok(draft.includes(`- **Museum README version at creation:** ${entry.museumVersion}\n`), 'draft version mismatch');
     assert.ok(draft.includes('**Status:** scripted relay draft'), 'draft status mismatch');
+    const task = queue.tasks[index];
+    assert.ok(draft.startsWith('# ' + task.title + '\n'), 'draft title mismatch');
+    assert.ok(draft.includes('- **Location:** ' + task.room + '\n'), 'draft room mismatch');
+    assert.ok(draft.includes('\n## Almost\n\n' + task.seed + '\n\n## Small possible next step\n\n' + task.experiment + '\n\n## Conditions before publication\n\n' + task.review + '\n'), 'draft proposal body mismatch');
     const versionScript = 'v' + entry.museumVersion.slice(1).replace('.', '').padStart(2, '0') + '.js';
     assert.ok(draft.includes(`- **Version script:** ${versionScript}\n`), 'draft version script mismatch');
     assert.match(draft, /- \*\*Version-script SHA-256 prefix:\*\* [a-f0-9]{12}\n/, 'missing or invalid script digest prefix');
+    // Reconstruct the deterministic worker output exactly. Checking only metadata
+    // would allow a corrupted or altered proposal body to pass verification.
+    const digest = draft.match(/^- \*\*Version-script SHA-256 prefix:\*\* ([a-f0-9]{12})$/m)?.[1];
+    const expected = [
+      '# ' + task.title, '',
+      '> **Status:** scripted relay draft for human/agent review — not a deployed Museum feature.',
+      '> **Authoring:** seeded by agent-04; assembled by a deterministic Node.js worker, not a continuing ChatGPT conversation.',
+      '', '- **Proposal ID:** ' + task.id, '- **Location:** ' + task.room,
+      '- **Created:** ' + entry.timestamp,
+      '- **Museum README version at creation:** ' + entry.museumVersion,
+      '- **Version script:** ' + versionScript,
+      '- **Version-script SHA-256 prefix:** ' + digest,
+      '', '## Almost', '', task.seed, '', '## Small possible next step', '',
+      task.experiment, '', '## Conditions before publication', '', task.review, '',
+      'The relay does **not** edit the playable Museum, infer discarded evidence,',
+      'call an LLM, publish this proposal, or assert successful verification.',
+      'Promotion to the live world requires a separate explicit development and test step.', ''
+    ].join('\n');
+    assert.equal(draft, expected, 'draft differs from deterministic proposal rendering');
   }
   if (state.completed.length) assert.deepEqual(state.lastCompleted, state.completed.at(-1), 'lastCompleted mismatch');
   else assert.ok(state.lastCompleted == null, 'unexpected lastCompleted');
