@@ -39,6 +39,18 @@ function assertNoChanges(f, beforeState, beforeJournal) {
 }
 
 for (const [name, corrupt, error] of [
+  ['state claims a different agent owner', f => {
+    const stateFile = path.join(f.dir, 'state.json');
+    const state = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+    state.agent = 'agent-03';
+    fs.writeFileSync(stateFile, JSON.stringify(state) + '\n');
+  }, /Unexpected relay schema or owner/],
+  ['queue exceeds the approved twelve-task bound', f => {
+    const queueFile = path.join(f.dir, 'tasks.json');
+    const queue = JSON.parse(fs.readFileSync(queueFile, 'utf8'));
+    queue.tasks = Array.from({ length: 13 }, (_, i) => ({ ...queue.tasks[0], id: 'task-' + i }));
+    fs.writeFileSync(queueFile, JSON.stringify(queue) + '\n');
+  }, /Malformed relay queue\/state/],
   ['journal and state disagree', f => {
     fs.writeFileSync(path.join(f.dir, 'journal.jsonl'), JSON.stringify({ id: 'ghost' }) + '\n');
   }, /Checkpoint preflight failed: journal differs from state/],
