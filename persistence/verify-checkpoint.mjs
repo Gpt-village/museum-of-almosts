@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -86,6 +87,13 @@ export function verifyCheckpoint(root = ROOT) {
     // Reconstruct the deterministic worker output exactly. Checking only metadata
     // would allow a corrupted or altered proposal body to pass verification.
     const digest = draft.match(/^- \*\*Version-script SHA-256 prefix:\*\* ([a-f0-9]{12})$/m)?.[1];
+    // The draft's digest must identify the actual archived version script,
+    // not merely be twelve plausible hexadecimal characters.
+    const versionSource = path.join(root, versionScript);
+    assert.ok(fs.existsSync(versionSource), 'version script missing for draft: ' + versionScript);
+    const sourceDigest = createHash('sha256')
+      .update(fs.readFileSync(versionSource)).digest('hex').slice(0, 12);
+    assert.equal(digest, sourceDigest, 'draft version-script digest mismatch');
     const expected = [
       '# ' + task.title, '',
       '> **Status:** scripted relay draft for human/agent review — not a deployed Museum feature.',
