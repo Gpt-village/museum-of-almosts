@@ -122,6 +122,11 @@ function assertLocalCheckpoint(queue, state, now) {
         easternClock(when).day !== entry.day) {
       throw new Error("Checkpoint preflight failed: invalid completion timestamp: " + entry.id);
     }
+    if (entry.source !== "deterministic relay" ||
+        typeof entry.museumVersion !== "string" ||
+        !/^v\d+\.\d+$/.test(entry.museumVersion)) {
+      throw new Error("Checkpoint preflight failed: invalid completion provenance: " + entry.id);
+    }
     previousTime = time;
     const count = (dailyCounts.get(entry.day) || 0) + 1;
     dailyCounts.set(entry.day, count);
@@ -148,10 +153,11 @@ function run(now) {
   const { day } = easternClock(now);
   const queue = readJson("tasks.json");
   const state = readJson("state.json");
-  if (queue.schema !== 1 || state.schema !== 1 || queue.agent !== "agent-04") {
+  if (queue.schema !== 1 || state.schema !== 1 || queue.agent !== "agent-04" || state.agent !== "agent-04") {
     throw new Error("Unexpected relay schema or owner");
   }
-  if (!Array.isArray(queue.tasks) || !Array.isArray(state.completed)) {
+  if (!Array.isArray(queue.tasks) || queue.tasks.length > MAX_TOTAL ||
+      !Array.isArray(state.completed)) {
     throw new Error("Malformed relay queue/state");
   }
   const ids = new Set();
