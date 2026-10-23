@@ -98,7 +98,7 @@ function renderDraft(task, version, now) {
 
 // Direct invocations need a basic fail-closed checkpoint preflight too.
 // GitHub Actions independently runs the stronger full checkpoint verifier.
-function assertLocalCheckpoint(queue, state) {
+function assertLocalCheckpoint(queue, state, now) {
   const raw = fs.readFileSync(path.join(DIR, "journal.jsonl"), "utf8").trim();
   const journal = raw ? raw.split("\n").map((line) => JSON.parse(line)) : [];
   if (!isDeepStrictEqual(journal, state.completed)) {
@@ -107,6 +107,33 @@ function assertLocalCheckpoint(queue, state) {
   if (state.completed.length > MAX_TOTAL ||
       state.completed.some((entry, index) => entry?.id !== queue[index]?.id)) {
     throw new Error("Checkpoint preflight failed: completed proposals not a queue prefix");
+  }
+  // A matching journal alone does not establish a usable checkpoint: a
+  // completed draft may be missing, or its timestamp may be from the future.
+  // Reject both before a direct invocation can append another completion.
+  let previousTime = -Infinity;
+  const dailyCounts = new Map();
+  for (const entry of state.completed) {
+    const when = new Date(entry.timestamp);
+    const time = when.getTime();
+    if (typeof entry.timestamp !== "string" || !Number.isFinite(time) ||
+        when.toISOString() !== entry.timestamp || time <= previousTime ||
+        time > now.getTime() || !isOperatingWindow(when) ||
+        easternClock(when).day !== entry.day) {
+      throw new Error("Checkpoint preflight failed: invalid completion timestamp: " + entry.id);
+    }
+    previousTime = time;
+    const count = (dailyCounts.get(entry.day) || 0) + 1;
+    dailyCounts.set(entry.day, count);
+    if (count > MAX_PER_DAY) {
+      throw new Error("Checkpoint preflight failed: historical daily quota exceeded");
+    }
+    const expectedDraft = "persistence/drafts/" + entry.id + ".md";
+    const draftPath = path.join(ROOT, expectedDraft);
+    if (entry.draft !== expectedDraft || !fs.existsSync(draftPath) ||
+        !fs.statSync(draftPath).isFile()) {
+      throw new Error("Checkpoint preflight failed: completed draft missing: " + expectedDraft);
+    }
   }
   if (!isDeepStrictEqual(state.lastCompleted ?? null, state.completed.at(-1) ?? null)) {
     throw new Error("Checkpoint preflight failed: lastCompleted differs from state");
@@ -139,7 +166,7 @@ function run(now) {
       }
     }
   }
-  assertLocalCheckpoint(queue.tasks, state);
+  assertLocalCheckpoint(queue.tasks, state, now);
   const task = selectNext(queue.tasks, state, day);
   if (!task) {
     console.log("Queue idle: daily quota or total bounded tasks exhausted.");
