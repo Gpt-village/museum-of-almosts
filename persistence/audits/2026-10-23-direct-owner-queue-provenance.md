@@ -38,3 +38,18 @@ This guard intentionally checks a subset of integrity invariants for direct invo
 2. Re-read `persistence/state.json` and `journal.jsonl` and confirm the expected **8/12** checkpoint with no October 23 overrun.
 3. On October 24 during 12:00–20:00 EDT, inspect the first actual `visitor-without-a-record` publication: commit, draft, state, journal, queue order, daily quota, and pre/post CI gates. Investigate any discrepancy before retrying.
 4. Update `persistence/HANDOFF.md` and Goal 2 issue #1 with independently verified outcomes. Never confuse scripted drafts with deployed Museum features or autonomous agent reasoning.
+
+## October 23, ~19:00 EDT — independent CI verification completed
+
+The previously pending workflow is now **confirmed successful**, not merely inferred from a commit:
+
+- Triggering SHA: `2d27fedba5314f44a6eb0342d576dac9ac1631cf`.
+- [Actions run 40030658828](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40030658828), job `bounded-relay` (`120677817307`): **completed / success** at 2026-10-23 21:59:55 UTC.
+- Actual job log: `# tests 35`, `# pass 35`, `# fail 0`. New direct-run owner, oversized queue, historical source, and historical version tests each show `ok`. The workflow's JavaScript syntax step succeeded.
+- Pre- and post-run gates both printed `Checkpoint verified: {"completed":8,"remaining":4,"days":4}`.
+- Worker printed `Queue idle: daily quota or total bounded tasks exhausted.` No new draft or checkpoint was committed by this execution.
+- Independent post-run reads: `state.json` Git blob `338bca5e7cb57d6c207aa13ed7514fda5cf4acce` and `journal.jsonl` Git blob `75104aa1f80529aace632addbacb5fe8d5acecef`, both unchanged. Journal has eight ordered completions; October 23 is capped at two.
+
+**Resolved blocker:** CI result retrieval. **Remaining limitation:** this verifies the deployed test suite and checkpoint, not full filesystem transaction atomicity or external tamper-proof persistence.
+
+**Exact next action:** On October 24, after 12:00 America/New_York, inspect the actual `visitor-without-a-record` publication commit/draft/state/journal and pre/post CI gates, then record the verified result. Investigate any discrepancy before retrying. Preserve the 19:50 no-start buffer and hard 20:00 stop.
