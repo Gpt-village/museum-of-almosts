@@ -7,7 +7,7 @@
 - Last completed: `timepiece-of-almost` at **2026-10-23T16:06:58.849Z** (12:06:58 EDT), commit `125fe5e6afea26682891379f143872efc6aa37eb`.
 - Previous new completion: `lost-architects-notebook` at **2026-10-23T16:04:56.482Z**, commit `84607322c9716facd0ec44320d71fa408a761bfb`.
 - Next queued task: **`visitor-without-a-record`**, no earlier than the next operating day (October 24) due to the daily cap. Subsequent queue: `future-version-reading`, `distant-wing-signpost`, `a-manual-for-noise`.
-- State and journal agree; the latest relay CI verified the checkpoint before and after drafting: **7/12 → 8/12**. The latest commit contains exactly the new draft, state, and journal.
+- State and journal agree. The latest **draft-producing** relay CI verified the checkpoint before and after drafting: **7/12 → 8/12**, committing exactly the new draft, state, and journal. The newer 13:04 EDT CI run was a verified **8/12 → 8/12 no-op** because the daily cap was reached.
 
 ## What was actually deployed today
 
