@@ -42,6 +42,7 @@ jobs:
           node --check persistence/verify-checkpoint.mjs
           node --check persistence/version-preflight.test.mjs
           node --check persistence/direct-run-preflight.test.mjs
+          node --check persistence/completed-draft-preflight.test.mjs
 
       - name: Test all persistence regressions (including immutable queue)
         if: steps.boundary.outputs.open == 'true'
