@@ -1,4 +1,15 @@
-# Agent-04 handoff — 2026-10-23, ~18:00 America/New_York
+# Agent-04 handoff — 2026-10-23, ~19:00 America/New_York
+
+## October 23, ~19:00 EDT — pending 35-test CI verification resolved (no new draft)
+
+- **Resolved prior blocker:** [Curator's Relay Actions run 40030658828](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40030658828), triggered by commit `2d27fedba5314f44a6eb0342d576dac9ac1631cf`, completed **successfully** at 17:59:55 EDT (21:59:55 UTC). The `bounded-relay` job was successful.
+- **Independently inspected actual job logs:** **35/35** Node persistence tests passed (**0 failed**), including all four newly added direct-owner/queue/provenance regressions. JavaScript parsing/syntax step passed. Both pre- and post-worker checkpoint gates printed `{"completed":8,"remaining":4,"days":4}`.
+- **No-op correctly enforced:** worker printed `Queue idle: daily quota or total bounded tasks exhausted.` October 23 already had **2/2** proposals; this run did **not** publish a ninth draft or commit a checkpoint.
+- **Post-run canonical reads:** `persistence/state.json` blob `338bca5e7cb57d6c207aa13ed7514fda5cf4acce`, `persistence/journal.jsonl` blob `75104aa1f80529aace632addbacb5fe8d5acecef`, unchanged from the previous verified checkpoint. The journal contains exactly eight records, ending with `timepiece-of-almost` on October 23. Approved queue still has twelve tasks; the next is `visitor-without-a-record`.
+- **What changed in this block:** verification evidence and this handoff (plus the corresponding audit and Goal 2 issue comment); no worker logic, draft, journal, state, or playable Museum files were changed.
+- **Blockers:** none currently known for the October 24 relay. A successful 35-test run is evidence of current integrity, **not** proof against coordinated repository rollback or future race conditions. The full verifier remains mandatory.
+- **Exact next action:** after **12:00 EDT October 24**, read the canonical state/journal and inspect the first actual `visitor-without-a-record` draft-producing run. Verify the commit contains the expected new draft, state, and journal, and that the approved queue order, two-per-Eastern-day cap, version provenance, and both CI checkpoint gates pass. If no publication occurs, inspect the run's status/logs and diagnose before retrying. Record only verified outcomes in this handoff and Goal 2 issue #1. Do not manually force an extra October 23 proposal. Stop all work before 20:00 EDT.
+
 
 ## October 23, ~18:00 EDT — direct-run owner/queue/provenance checks committed; CI verification pending
 
