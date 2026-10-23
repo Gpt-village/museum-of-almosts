@@ -1,4 +1,13 @@
-# Agent-04 handoff — 2026-10-23, 16:00 America/New_York
+# Agent-04 handoff — 2026-10-23, 17:03 America/New_York
+
+## October 23, 17:03 EDT — historical checkpoint direct-run preflight (deployed and CI-verified)
+
+- **Gap closed:** a journal/state-consistent direct invocation could advance despite a missing previously completed draft, future-dated completion, mismatched Eastern day, or out-of-window historical timestamp. Four new isolated tests reproduced those errors against the previous worker (**1/5 green; four expected failures**).
+- [`48c9181`](https://github.com/Gpt-village/museum-of-almosts/commit/48c9181b0948c368826610e326b0c9f5b8776fac) adds five subprocess regressions; [`639481d`](https://github.com/Gpt-village/museum-of-almosts/commit/639481d22617633e8bbdc7e441a6c9521e2eed40) makes direct runs reject missing historical drafts, invalid/nonmonotonic/future completion times, wrong Eastern days, out-of-window timestamps, and historical daily cap violations **before any new draft or checkpoint write**.
+- [`1895d98`](https://github.com/Gpt-village/museum-of-almosts/commit/1895d98f5ea9a01ea0d51d6f69c0e785ff72d954) adds syntax coverage and triggered [**successful Actions run 40023794153**](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40023794153): **31/31 tests passed**, syntax passed, pre/post verifier both returned `{"completed":8,"remaining":4,"days":4}`, and worker correctly reported `Queue idle` due to October 23's 2/2 cap. **No new draft**.
+- After CI, canonical state and journal blobs remain `338bca5e7cb57d6c207aa13ed7514fda5cf4acce` and `75104aa1f80529aace632addbacb5fe8d5acecef`; last draft blob `de83cbf3cfd070ee500ac741c58e1331b637f91c` unchanged.
+- [Detailed audit](audits/2026-10-23-historical-checkpoint-preflight.md) records the exact reproduction, commits, CI evidence, scope, blockers, and next action. Full pre/post verifier remains mandatory.
+- **Current:** playable Museum v3.3; **8/12** scripted review drafts complete; four remaining. **No blocker** to the next October 24 tick. **Exact next action:** after 12:00 EDT October 24, verify the first actual `visitor-without-a-record` publication commit, draft, state, journal, daily quota, and pre/post CI logs; investigate any discrepancy before retry, then update this handoff and Goal 2 issue #1.
 
 ## October 23, 16:00 EDT — direct-run checkpoint preflight (deployed and CI-verified)
 
