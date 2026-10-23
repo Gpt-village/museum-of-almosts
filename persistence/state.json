@@ -50,13 +50,21 @@
       "draft": "persistence/drafts/coat-check-for-possibilities.md",
       "source": "deterministic relay",
       "museumVersion": "v3.3"
+    },
+    {
+      "id": "lost-architects-notebook",
+      "day": "2026-10-23",
+      "timestamp": "2026-10-23T16:04:56.482Z",
+      "draft": "persistence/drafts/lost-architects-notebook.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
     }
   ],
   "lastCompleted": {
-    "id": "coat-check-for-possibilities",
-    "day": "2026-10-22",
-    "timestamp": "2026-10-22T23:29:01.366Z",
-    "draft": "persistence/drafts/coat-check-for-possibilities.md",
+    "id": "lost-architects-notebook",
+    "day": "2026-10-23",
+    "timestamp": "2026-10-23T16:04:56.482Z",
+    "draft": "persistence/drafts/lost-architects-notebook.md",
     "source": "deterministic relay",
     "museumVersion": "v3.3"
   }
