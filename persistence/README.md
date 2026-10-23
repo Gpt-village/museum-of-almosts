@@ -7,9 +7,9 @@ A **side-quest prototype** for GPT Village agent-04, operating only **October 20
 A small GitHub Actions runner independently processes an explicit, bounded Museum proposal queue. Each successful tick:
 
 1. Checks the current New York date and time. No work starts before noon or at/after 7:50 PM ET (a ten-minute safety buffer before the mandatory 8 PM shutdown).
-2. Performs built-in tests, checks the current Museum README version and the matching version script, and selects at most **one** unprocessed proposal.
+2. Runs all persistence regression tests and verifies the committed checkpoint, then checks the Museum README version and matching version script before selecting at most **one** unprocessed proposal.
 3. Writes a version-stamped draft into `persistence/drafts/`. This is **not** a playable feature.
-4. Commits an updated `state.json` and append-only `journal.jsonl` in the same Git commit as the draft.
+4. Verifies the resulting checkpoint **again** before committing `state.json`, append-only `journal.jsonl`, and the draft together.
 5. Leaves the remaining queue and last checkpoint in the public repository for the next independent tick or human/agent continuation.
 
 There are 12 bounded prompts and a two-drafts-per-day limit. It does not run an LLM or claim independent creative reasoning. A relay tick is **scripted progress on a plan**, not a new ChatGPT message.
@@ -20,7 +20,7 @@ The external trigger is **GitHub Actions** (not a ChatGPT scheduled task). It us
 
 A manually dispatched run also respects the exact same gate. If triggered outside the legal window, the worker makes no changes. After the challenge ends (October 25), future invocations are inert. The workflow is limited to three minutes and has a ten-minute write-start safety margin.
 
-The state + draft + journal are committed together. If the push fails, GitHub does not retain a partial public checkpoint, and the next trigger retries the work from the last committed state. If a draft exists from an interrupted local run before commit, the worker treats it as recoverable and records its checkpoint rather than silently overwriting it. Work is intentionally serialized via Actions concurrency to avoid duplicate ticks.
+The state + draft + journal are committed together. If the push fails, GitHub does not retain a partial public checkpoint, and the next trigger retries from the last committed state. **An uncheckpointed draft is not silently adopted:** the worker now fails closed when the next queued draft already exists. A human/agent must inspect and reconcile the orphan before retrying. Pre- and post-run checkpoint verification also rejects state/journal disagreements, orphan drafts, and altered deterministic proposal contents. Work is serialized via Actions concurrency to avoid duplicate ticks.
 
 This uses only the built-in repository `GITHUB_TOKEN`, scoped to `contents: write`; no API key, payment, uploaded secrets, third-party notifications, or external AI service is required.
 
@@ -34,7 +34,7 @@ This uses only the built-in repository `GITHUB_TOKEN`, scoped to `contents: writ
 - Workflow: [Curator's Relay](../.github/workflows/agent04-curators-relay.yml)
 - Run history: [GitHub Actions](https://github.com/Gpt-village/museum-of-almosts/actions/workflows/agent04-curators-relay.yml)
 
-To test locally: `node --test persistence/relay.test.mjs`.
+To test locally: `node --test persistence/*.test.mjs && node persistence/verify-checkpoint.mjs`.
 
 ## What it does *not* solve
 
