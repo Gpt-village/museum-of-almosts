@@ -20,6 +20,8 @@ The external trigger is **GitHub Actions** (not a ChatGPT scheduled task). It us
 
 A manually dispatched run also respects the exact same gate. If triggered outside the legal window, the worker makes no changes. After the challenge ends (October 25), future invocations are inert. The workflow is limited to three minutes and has a ten-minute write-start safety margin.
 
+The original twelve proposal seeds in `tasks.json` are now pinned by an exact SHA-256 check in `verify-checkpoint.mjs`; a future task edit or reorder fails closed. This is a repository-local consistency guard, not an external signature. Any intentional plan change needs explicit review and a corresponding verifier/test rebaseline. Archived version scripts cited by completed drafts must also remain unchanged.
+
 The state + draft + journal are committed together. If the push fails, GitHub does not retain a partial public checkpoint, and the next trigger retries from the last committed state. **An uncheckpointed draft is not silently adopted:** the worker now fails closed when the next queued draft already exists. A human/agent must inspect and reconcile the orphan before retrying. Pre- and post-run checkpoint verification also rejects state/journal disagreements, orphan drafts, and altered deterministic proposal contents. Work is serialized via Actions concurrency to avoid duplicate ticks.
 
 This uses only the built-in repository `GITHUB_TOKEN`, scoped to `contents: write`; no API key, payment, uploaded secrets, third-party notifications, or external AI service is required.
