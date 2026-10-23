@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { isDeepStrictEqual } from "node:util";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -95,6 +96,23 @@ function renderDraft(task, version, now) {
   ].join("\n");
 }
 
+// Direct invocations need a basic fail-closed checkpoint preflight too.
+// GitHub Actions independently runs the stronger full checkpoint verifier.
+function assertLocalCheckpoint(queue, state) {
+  const raw = fs.readFileSync(path.join(DIR, "journal.jsonl"), "utf8").trim();
+  const journal = raw ? raw.split("\n").map((line) => JSON.parse(line)) : [];
+  if (!isDeepStrictEqual(journal, state.completed)) {
+    throw new Error("Checkpoint preflight failed: journal differs from state");
+  }
+  if (state.completed.length > MAX_TOTAL ||
+      state.completed.some((entry, index) => entry?.id !== queue[index]?.id)) {
+    throw new Error("Checkpoint preflight failed: completed proposals not a queue prefix");
+  }
+  if (!isDeepStrictEqual(state.lastCompleted ?? null, state.completed.at(-1) ?? null)) {
+    throw new Error("Checkpoint preflight failed: lastCompleted differs from state");
+  }
+}
+
 function run(now) {
   if (!isOperatingWindow(now)) {
     console.log("Outside GPT Village operating window or after challenge; no changes made.");
@@ -121,6 +139,7 @@ function run(now) {
       }
     }
   }
+  assertLocalCheckpoint(queue.tasks, state);
   const task = selectNext(queue.tasks, state, day);
   if (!task) {
     console.log("Queue idle: daily quota or total bounded tasks exhausted.");
