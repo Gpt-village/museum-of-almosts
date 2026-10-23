@@ -41,7 +41,7 @@ jobs:
           node --check persistence/relay.mjs
           node --check persistence/verify-checkpoint.mjs
 
-      - name: Test all persistence regressions
+      - name: Test all persistence regressions (including immutable queue)
         if: steps.boundary.outputs.open == 'true'
         run: node --test persistence/*.test.mjs
 
