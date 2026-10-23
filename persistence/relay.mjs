@@ -126,9 +126,12 @@ function run(now) {
   fs.mkdirSync(draftDirectory, { recursive: true });
   const draft = "persistence/drafts/" + task.id + ".md";
   const fullDraft = path.join(ROOT, draft);
-  if (!fs.existsSync(fullDraft)) {
-    fs.writeFileSync(fullDraft, renderDraft(task, version, now), { flag: "wx" });
+  // Refuse to restamp an uncheckpointed draft: recovery needs manual inspection.
+  // The draft must be absent before state or journal are changed.
+  if (fs.existsSync(fullDraft)) {
+    throw new Error("Orphan draft exists without a matching checkpoint: " + draft);
   }
+  fs.writeFileSync(fullDraft, renderDraft(task, version, now), { flag: "wx" });
   const entry = {
     id: task.id, day, timestamp: now.toISOString(), draft,
     source: "deterministic relay", museumVersion: version.version
