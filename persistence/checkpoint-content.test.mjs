@@ -42,15 +42,16 @@ test('checkpoint verifier rejects an appended unreviewed claim', () => {
 });
 
 test('checkpoint verifier rejects a forged version-script digest', () => {
-  withFixture(text => text.replace(
-    /(- \\*\\*Version-script SHA-256 prefix:\\*\\* )[a-f0-9]{12}/,
-    (_match, label) => label + '000000000000'
-  ));
+  withFixture(text => text.split('\n').map(line =>
+    line.startsWith('- **Version-script SHA-256 prefix:** ')
+      ? '- **Version-script SHA-256 prefix:** 000000000000'
+      : line
+  ).join('\n'));
 });
 
 test('checkpoint verifier rejects a changed archived version script', () => {
   withFixture((text, root) => {
-    fs.appendFileSync(path.join(root, 'v33.js'), '\\n// altered after draft creation\\n');
+    fs.appendFileSync(path.join(root, 'v33.js'), '\n// altered after draft creation\n');
     return text;
   });
 });
