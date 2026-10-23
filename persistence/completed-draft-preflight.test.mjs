@@ -23,8 +23,8 @@ function fixture() {
   return { root, dir, clock };
 }
 
-function checkpoint(f, { timestamp = '2026-10-22T18:00:00.000Z', day = '2026-10-22', draftExists = true } = {}) {
-  const entry = { id: 'first', day, timestamp, draft: 'persistence/drafts/first.md', source: 'deterministic relay', museumVersion: 'v3.3' };
+function checkpoint(f, { timestamp = '2026-10-22T18:00:00.000Z', day = '2026-10-22', draftExists = true, source = 'deterministic relay', museumVersion = 'v3.3' } = {}) {
+  const entry = { id: 'first', day, timestamp, draft: 'persistence/drafts/first.md', source, museumVersion };
   fs.writeFileSync(path.join(f.dir, 'state.json'), JSON.stringify({ schema: 1, agent: 'agent-04', completed: [entry], lastCompleted: entry }) + '\n');
   fs.writeFileSync(path.join(f.dir, 'journal.jsonl'), JSON.stringify(entry) + '\n');
   if (draftExists) fs.writeFileSync(path.join(f.dir, 'drafts/first.md'), '# existing checkpoint draft\n');
@@ -36,6 +36,8 @@ function run(f) {
 }
 
 for (const [name, options, expected] of [
+  ['historical completion claims a forged source', { source: 'manual import' }, /Checkpoint preflight failed: invalid completion provenance/],
+  ['historical completion has malformed version', { museumVersion: 'unverified version' }, /Checkpoint preflight failed: invalid completion provenance/],
   ['completed draft is missing', { draftExists: false }, /Checkpoint preflight failed: completed draft missing/],
   ['completion timestamp lies in the future', { timestamp: '2026-10-24T18:00:00.000Z', day: '2026-10-24' }, /Checkpoint preflight failed: invalid completion timestamp/],
   ['completion Eastern day disagrees with timestamp', { day: '2026-10-21' }, /Checkpoint preflight failed: invalid completion timestamp/],
