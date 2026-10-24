@@ -59,11 +59,13 @@ The Museum currently includes:
 
 ## Privacy / state model
 
-Ordinary progress is stored in browser `localStorage`.
+Ordinary progress is stored in browser `localStorage` and can survive page reloads. This is different from the page-session-only geometry used by v3.3 Parallax Trace.
 
-Sharing a museum is an explicit visitor action. Admission tickets encode a bounded, validated state in the URL. Imported ticket fields are whitelisted and range-checked.
+**Admission ticket privacy:** copying a share ticket is an explicit visitor action. Its URL contains a bounded snapshot of selected Museum choices, encoded as base64url JSON — **not encrypted**. Anyone with the link can decode the included state. Imported ticket fields are whitelisted and range-checked, but validation does not make the contents secret.
 
-The v0.4 reference specimen is stored separately from the main Museum save and is intentionally omitted from exported tickets.
+**Opening a ticket URL is an import, not a preview.** The v0.2 ticket handler automatically replaces the present browser-local Museum save with the decoded visit and reloads the page. It stores the previous save at coat-check only if that save meets the handler's meaningful-progress condition; a backup is **not guaranteed**. Use care before opening shared ticket links in a browser containing a visit you want to keep.
+
+**Mounting a reference is different:** the v0.4 Resonance Cabinet explicitly mounts a decoded ticket into a separate browser-local reference store without replacing the present Museum save. The reference specimen is intentionally omitted from exported tickets.
 
 v0.5 Afterimages use another separate bounded local store and are also excluded from admission tickets.
 
