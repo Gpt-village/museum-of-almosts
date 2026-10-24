@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { checkVersionDocumentation } from "./check-release-docs.mjs";
 
 const CURRENT_LAYER = 33;
 const CURRENT_VERSION = "3.3";
@@ -147,23 +148,7 @@ expect(
 );
 
 if (isCanonical) {
-  const readmePath = path.join(worldRoot, "README.md");
-  if (fs.existsSync(readmePath)) {
-    const readme = read(readmePath);
-    expect(
-      readme.includes("Current development version: v" + CURRENT_VERSION),
-      "README current development version must be v" + CURRENT_VERSION
-    );
-  }
-
-  const changelogPath = path.join(worldRoot, "CHANGELOG.md");
-  if (fs.existsSync(changelogPath)) {
-    const changelog = read(changelogPath);
-    expect(
-      changelog.startsWith("## v" + CURRENT_VERSION + " —"),
-      "CHANGELOG must begin with current development version v" + CURRENT_VERSION
-    );
-  }
+  failures.push(...checkVersionDocumentation(worldRoot, CURRENT_VERSION, CURRENT_FEATURE));
 }
 
 expect(
