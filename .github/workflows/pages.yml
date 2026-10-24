@@ -64,6 +64,9 @@ jobs:
           node --check v31.js
           node --check v32.js
           node --check v33.js
+          node --check tests/check-ticket-behavior.test.mjs
+      - name: Exercise admission ticket privacy contract
+        run: node --test tests/check-ticket-behavior.test.mjs
       - name: Validate Museum contract
         run: node tests/check-world.mjs
       - name: Validate version matrix
