@@ -81,6 +81,9 @@ const expect = (condition, message) => {
 // Visitor-facing ticket disclosure must match the existing v0.2 import contract.
 expect(index.includes('>copy admission ticket URL</button>'),
   'ticket control must describe the URL it copies, not merely a visit code');
+expect(index.includes('aria-describedby="ticketPrivacyHint"') &&
+  index.includes('id="ticketPrivacyHint"'),
+  'keyboard-focused ticket control must expose its privacy warning to assistive technology');
 expect(index.includes('Ticket URLs contain readable encoded visit choices (not encrypted)'),
   'ticket disclosure must not imply encoded visitor choices are secret');
 expect(index.includes('Opening one imports that visit into this browser, replacing the current save'),
