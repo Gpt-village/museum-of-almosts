@@ -73,3 +73,5 @@ jobs:
 
       - name: Validate version matrix
         run: node tests/check-version-matrix.mjs
+      - name: Test fail-closed release documentation checks
+        run: node --test tests/check-release-docs.test.mjs
