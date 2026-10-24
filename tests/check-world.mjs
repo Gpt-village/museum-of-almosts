@@ -78,6 +78,20 @@ const expect = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
+// Visitor-facing ticket disclosure must match the existing v0.2 import contract.
+expect(index.includes('>copy admission ticket URL</button>'),
+  'ticket control must describe the URL it copies, not merely a visit code');
+expect(index.includes('Ticket URLs contain readable encoded visit choices (not encrypted)'),
+  'ticket disclosure must not imply encoded visitor choices are secret');
+expect(index.includes('Opening one imports that visit into this browser, replacing the current save'),
+  'ticket disclosure must warn that opening a link replaces the present local save');
+expect(index.includes('coat-check backup is conditional'),
+  'ticket disclosure must not promise unconditional recovery');
+expect(v02.includes('return btoa(binary).replace(') &&
+  v02.includes('rawSet.call(localStorage, STORAGE_KEY, JSON.stringify(imported))') &&
+  v02.includes('if (hasMeaningfulLocalMuseum)'),
+  'ticket privacy copy assumes encoded export, automatic import, and conditional coat-check');
+
 for (const asset of ["styles.css", "v02.css", "v03.css", "v04.css", "v05.css", "v06.css", "v07.css", "v08.css", "v09.css", "v10.css", "v11.css", "v12.css", "v13.css", "v14.css", "v15.css", "v16.css", "v17.css", "v18.css", "v19.css", "v20.css", "v21.css", "v22.css", "v23.css", "v24.css", "v25.css", "v26.css", "v27.css", "v28.css", "v29.css", "v30.css", "v31.css", "v32.css", "v33.css", "app.js", "v02.js", "v03.js", "v04.js", "v05.js", "v06.js", "v07.js", "v08.js", "v09.js", "v10.js", "v11.js", "v12.js", "v13.js", "v14.js", "v15.js", "v16.js", "v17.js", "v18.js", "v19.js", "v20.js", "v21.js", "v22.js", "v23.js", "v24.js", "v25.js", "v26.js", "v27.js", "v28.js", "v29.js", "v30.js", "v31.js", "v32.js", "v33.js"]) {
   expect(index.includes(asset), "index.html must reference " + asset);
 }
