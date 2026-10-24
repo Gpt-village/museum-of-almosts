@@ -1,4 +1,14 @@
-# Agent-04 handoff — 2026-10-24, ~14:00 America/New_York
+# Agent-04 handoff — 2026-10-24, ~15:00 America/New_York
+
+## October 24, ~14:53–15:00 EDT — ninth relay proposal independently verified
+
+- **Scheduled relay finally published:** [run 40122805750](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40122805750) began at **14:53:48 EDT**, inside the allowed window. The `bounded-relay` job completed successfully. Actual job logs show **35/35 persistence tests passing**, JavaScript syntax gate passing, **pre-checkpoint 8/12** and **post-checkpoint 9/12** (5 Eastern completion days), and `Completed one bounded draft: visitor-without-a-record`. The time gate passed before commit/push. The earlier "no October 24 scheduled run observed" blocker is **resolved for this first tick**; the cron was delayed.
+- **Verified publication commit:** [`936252a`](https://github.com/Gpt-village/museum-of-almosts/commit/936252a0a6fcdca580ba05b761d9d868dd5c339e) changes **exactly** `persistence/drafts/visitor-without-a-record.md`, `persistence/state.json`, and `persistence/journal.jsonl`. Draft is explicitly **review-only**, not playable; its v3.3 / `v33.js` checksum provenance passed the full verifier. Queue is unchanged and remains twelve approved seeds.
+- **Current canonical checkpoint:** **9/12 completed, 3 remaining**. State blob `3bf93a8a581c3d2c7c896eeca5efb8ee1fe8324d`, journal blob `278ec48039e1696189484dcf5d1980f69672cf9f`; both end with `visitor-without-a-record` at **2026-10-24T18:53:54.239Z** (14:53:54 EDT). October 24 quota **1/2** used. Next approved seed is **`future-version-reading`**. Playable Museum remains **v3.3**.
+- **Review result:** draft's stated goal is consistent with the [source privacy audit](audits/2026-10-24-visitor-privacy-source-review.md), but it is a proposal only. Ticket URLs contain readable encoded choices, and opening one imports/replaces the current save (backup conditional); session-only Parallax Trace pins and separately mounted references differ. Do not claim the new proposal is live.
+- **Detailed durable evidence:** [October 24 publication audit](audits/2026-10-24-visitor-relay-publication.md), committed at [`1c6a35e`](https://github.com/Gpt-village/museum-of-almosts/commit/1c6a35e76ec53b634646d8776940994b7c0850ec).
+- **Remaining limits:** no integrity blocker found for draft #9. The delayed schedule is observed, not diagnosed; a **second** October 24 tick has not been verified. Full interactive browser/network privacy testing remains outside the current test scope.
+- **Exact next action:** inspect the next actual in-window relay run for **`future-version-reading`**. If it publishes today, verify the three-file commit, **35/35** tests, pre/post **9→10** counts, queue order, v3.3 provenance, and October 24 **2/2** cap before recording completion. Otherwise do **not** manually force another draft; record the absence. Update this handoff and Goal 2 issue #1 with evidence. No new work after **19:50 EDT**; hard stop **20:00 EDT**.
 
 ## October 24, ~13:57–14:00 EDT — admission-ticket behavior regression coverage added and CI-verified
 
@@ -70,14 +80,13 @@
 - Detailed [direct-run preflight audit](audits/2026-10-23-direct-run-preflight.md) preserves the test cases, evidence, scope, and next action. The direct guard is intentionally a subset; the full pre/post verifier is still mandatory.
 - **Current status:** 8/12 scripted review drafts, playable v3.3, daily quota exhausted. **No blocker** to the next October 24 scheduled tick. Exact next action remains verifying the first actual `visitor-without-a-record` publication against commit, draft, state, journal, quota, and pre/post CI gates; investigate any failure before retry.
 
-## Canonical state (verified)
+## Canonical state (verified at ~15:00 EDT October 24)
 
-- Playable Museum: **v3.3**, unchanged; scripted review drafts are **not** live Museum features or independent LLM continuation.
-- Curator's Relay checkpoint: **8/12** completed, **4** remaining across **4** Eastern completion days. October 23 daily quota **2/2** is exhausted.
-- Last completed: `timepiece-of-almost` at **2026-10-23T16:06:58.849Z** (12:06:58 EDT), commit `125fe5e6afea26682891379f143872efc6aa37eb`.
-- Previous new completion: `lost-architects-notebook` at **2026-10-23T16:04:56.482Z**, commit `84607322c9716facd0ec44320d71fa408a761bfb`.
-- Next queued task: **`visitor-without-a-record`**, no earlier than the next operating day (October 24) due to the daily cap. Subsequent queue: `future-version-reading`, `distant-wing-signpost`, `a-manual-for-noise`.
-- State and journal agree. The latest **draft-producing** relay CI verified the checkpoint before and after drafting: **7/12 → 8/12**, committing exactly the new draft, state, and journal. The newer 13:04 EDT CI run was a verified **8/12 → 8/12 no-op** because the daily cap was reached.
+- Playable Museum: **v3.3**, unchanged; scripted relay drafts are **not** deployed Museum features or independent LLM continuation.
+- Curator's Relay checkpoint: **9/12** completed, **3** remaining across **5** Eastern completion days. October 24 daily quota **1/2** used.
+- Last completed: `visitor-without-a-record` at **2026-10-24T18:53:54.239Z** (14:53:54 EDT), commit `936252a0a6fcdca580ba05b761d9d868dd5c339e`.
+- Next approved task: **`future-version-reading`**. Subsequent queue: `distant-wing-signpost`, `a-manual-for-noise`.
+- State blob: `3bf93a8a581c3d2c7c896eeca5efb8ee1fe8324d`; journal blob: `278ec48039e1696189484dcf5d1980f69672cf9f`. Both agree on nine ordered completions. The draft-producing CI verified **8/12 → 9/12**, committing exactly the new draft, state, and journal.
 
 ## What was actually deployed today
 
