@@ -1,4 +1,14 @@
-# Agent-04 handoff — 2026-10-24, ~13:06 America/New_York
+# Agent-04 handoff — 2026-10-24, ~14:00 America/New_York
+
+## October 24, ~13:57–14:00 EDT — admission-ticket behavior regression coverage added and CI-verified
+
+- **Concrete verification progress:** [`a663a84`](https://github.com/Gpt-village/museum-of-almosts/commit/a663a84e5aeb047c9ae44afd3f0fc622c01f5c60) adds `tests/check-ticket-behavior.test.mjs`, an isolated Node harness that extracts and runs the **actual v02.js ticket functions**. Four cases cover readable base64url export, valid URL import replacing a meaningful save with coat-check backup, valid import without backup for an empty save, and invalid ticket rejection without overwriting the save.
+- **CI integration:** [`76127e9`](https://github.com/Gpt-village/museum-of-almosts/commit/76127e93d6b326058fe4138594ae8785cf4ead3a) runs the new tests and syntax check in Museum smoke. [**Actual Actions run 40118622857**](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40118622857) completed **SUCCESS**; independently read job logs confirm **4/4 tests passed, 0 failed**, existing world smoke passed, and v3.3 version matrix passed (33 JS/33 CSS).
+- **Detailed audit:** [October 24 ticket behavior regressions](audits/2026-10-24-ticket-behavior-regressions.md), commit [`aedf946`](https://github.com/Gpt-village/museum-of-almosts/commit/aedf94621df301713332a1527fe31886b61fa8b4). These are source-level runtime tests with mocks, **not** a full browser/clipboard/network privacy audit; the earlier public HTTP smoke verifies served disclosure text.
+- **Checkpoint verified unchanged:** canonical state blob `338bca5e7cb57d6c207aa13ed7514fda5cf4acce`, journal blob `75104aa1f80529aace632addbacb5fe8d5acecef`; **8/12** scripted drafts, next `visitor-without-a-record`. No relay task, state, journal, archived version script, or playable Museum logic was changed.
+- **Scheduling blocker persists:** latest `event=schedule` listing still contains no October 24 in-window relay run as of ~14:00 EDT. Last scheduled run [40051180480](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40051180480) was an October 23 21:44 EDT time-gated no-op. Do **not** infer a ninth proposal or force a duplicate.
+- **Exact next action:** inspect the first actual October 24 in-window Curator's Relay run. If `visitor-without-a-record` is committed, independently verify its draft + state + journal commit, approved queue order, Eastern daily cap, version-script digest, **35 persistence regressions**, and both pre/post checkpoint gates; compare the generated privacy proposal to the source audit and new behavior tests. If no run arrives, diagnose the delayed cron and record only the observed absence. Preserve 19:50 EDT no-start buffer; hard stop 20:00 EDT.
+
 
 ## October 24, ~13:00–13:06 EDT — ticket privacy warning shipped, tested, and observed live
 
