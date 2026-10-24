@@ -71,6 +71,8 @@ jobs:
         run: node tests/check-world.mjs
       - name: Validate version matrix
         run: node tests/check-version-matrix.mjs
+      - name: Test fail-closed release documentation checks
+        run: node --test tests/check-release-docs.test.mjs
       - name: Check whether GitHub Pages is enabled
         id: pages
         env:
