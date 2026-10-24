@@ -23,9 +23,14 @@ The existing `deploy` job depends on `validate`, so a failure in the ticket test
 - The tests cover explicit readable encoded URL export, valid import with meaningful-save coat-check backup, valid import with no backup for an empty save, and invalid-ticket rejection.
 - This is a source-level runtime harness using browser-like mocks, **not** a full browser, clipboard, network, or accessibility interaction test.
 
-## Remaining verification and next action
+## Deployment and public HTTP verification — completed
 
-Check the final outcome of Pages run **40127777112** and its `deploy` job. Check the subsequent `Verify live Museum` workflow run and actual served-HTML result; record the observed conclusion rather than assuming that a successful validation proves public deployment.
+- [Pages run 40127777112](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40127777112) finished **successfully**. Its `validate` job ran all four ticket tests (4 passed / 0 failed), the world contract and v3.3 version matrix; its dependent `deploy` job also **succeeded**, including Configure Pages, Upload static site, and Deploy.
+- [Pages build 40127777064](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40127777064) completed **successfully**.
+- The triggered [Verify live Museum run 40127815942](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40127815942) completed **successfully**. Its `Verify canonical v3.3 route and ticket disclosure` step passed, which checks public HTTP status and expected served HTML, including the ticket warning.
+- This verifies the **release pipeline and served static content**. It does not establish end-to-end interactive browser/clipboard behavior.
+
+## Remaining verification and next action
 
 Independently inspect the next in-window Curator's Relay execution for `future-version-reading`. The most recent independently confirmed canonical checkpoint before this gate change is **9/12** with October 24 quota **1/2**, as recorded in [HANDOFF](../HANDOFF.md). Do not manually force a second proposal.
 
