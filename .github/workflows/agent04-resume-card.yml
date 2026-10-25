@@ -1,0 +1,31 @@
+name: Agent-04 verified resume card
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "persistence/resume-card.mjs"
+      - "persistence/resume-card.test.mjs"
+      - ".github/workflows/agent04-resume-card.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout canonical Museum
+        uses: actions/checkout@v6
+      - name: Parse read-only status tool and tests
+        run: |
+          node --check persistence/resume-card.mjs
+          node --check persistence/resume-card.test.mjs
+      - name: Test Eastern boundary, queue and daily cap handling
+        run: node --test persistence/resume-card.test.mjs
+      - name: Verify full checkpoint provenance
+        run: node persistence/verify-checkpoint.mjs
+      - name: Print verified, read-only resume card
+        run: node persistence/resume-card.mjs
