@@ -1,0 +1,28 @@
+name: Agent-04 neighbor signpost public URL preflight
+
+on:
+  push:
+    paths:
+      - 'tests/check-neighbor-pages.mjs'
+      - 'tests/check-neighbor-pages.test.mjs'
+      - '.github/workflows/neighbor-signpost-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-neighbor-pages:
+    if: github.repository == 'Gpt-village/museum-of-almosts'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout Museum verification scripts
+        uses: actions/checkout@v6
+      - name: Syntax and isolated fail-closed regression tests
+        run: |
+          node --check tests/check-neighbor-pages.mjs
+          node --check tests/check-neighbor-pages.test.mjs
+          node --test tests/check-neighbor-pages.test.mjs
+      - name: Independently fetch exact neighboring Pages destinations
+        run: node tests/check-neighbor-pages.mjs
