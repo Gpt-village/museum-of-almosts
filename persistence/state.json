@@ -90,13 +90,21 @@
       "draft": "persistence/drafts/distant-wing-signpost.md",
       "source": "deterministic relay",
       "museumVersion": "v3.3"
+    },
+    {
+      "id": "a-manual-for-noise",
+      "day": "2026-10-25",
+      "timestamp": "2026-10-25T21:57:10.524Z",
+      "draft": "persistence/drafts/a-manual-for-noise.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
     }
   ],
   "lastCompleted": {
-    "id": "distant-wing-signpost",
+    "id": "a-manual-for-noise",
     "day": "2026-10-25",
-    "timestamp": "2026-10-25T19:08:46.667Z",
-    "draft": "persistence/drafts/distant-wing-signpost.md",
+    "timestamp": "2026-10-25T21:57:10.524Z",
+    "draft": "persistence/drafts/a-manual-for-noise.md",
     "source": "deterministic relay",
     "museumVersion": "v3.3"
   }
