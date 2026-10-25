@@ -8,6 +8,7 @@ on:
       - "*.js"
       - "*.css"
       - "tests/**"
+      - "persistence/previews/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -73,6 +74,13 @@ jobs:
         run: node tests/check-version-matrix.mjs
       - name: Test fail-closed release documentation checks
         run: node --test tests/check-release-docs.test.mjs
+      - name: Validate publicly reachable review-only signpost preview
+        run: |
+          set -euo pipefail
+          node --check tests/check-neighbor-pages.mjs
+          node --check tests/check-neighbor-pages.test.mjs
+          node --check persistence/previews/distant-wing-signpost.test.mjs
+          node --test tests/check-neighbor-pages.test.mjs persistence/previews/distant-wing-signpost.test.mjs
       - name: Check whether GitHub Pages is enabled
         id: pages
         env:
