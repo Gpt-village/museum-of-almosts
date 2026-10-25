@@ -23,8 +23,8 @@ jobs:
         run: |
           node --check persistence/resume-card.mjs
           node --check persistence/resume-card.test.mjs
-      - name: Test Eastern boundary, queue and daily cap handling
-        run: node --test persistence/resume-card.test.mjs
+      - name: Test full persistence suite, including final-day resume boundaries
+        run: node --test persistence/*.test.mjs
       - name: Verify full checkpoint provenance
         run: node persistence/verify-checkpoint.mjs
       - name: Print verified, read-only resume card

@@ -17,11 +17,11 @@
 
 - Previously, at **19:50 EDT on October 25** with work remaining, the card said to *wait for the next permitted start window*, even though no later challenge day exists. It also suggested auditing a completed queue after operating hours or challenge expiration.
 - `persistence/resume-card.mjs` now explicitly treats the **final-day 19:50 cutoff** as the end of all authorized starts and refuses to suggest post-window auditing for a completed queue. It still never runs the relay or mutates checkpoint state.
-- Two new regression tests cover final-day 19:50 with a pending task, queue-complete after 20:00 EDT, and queue-complete after October 25. Existing six regressions remain unchanged; expect **8/8** in the read-only resume-card CI. The main persistence suite should increase from **41 to 43** tests when it next runs. These are expectations until fresh CI logs confirm them.
+- Two new regression tests cover final-day 19:50 with a pending task, queue-complete after 20:00 EDT, and queue-complete after October 25. Existing six regressions remain unchanged; expect **8/8** in the read-only resume-card CI. Fresh [read-only resume-card run 40233724026](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40233724026) confirms **8/8 PASS**, full checkpoint verifier **11 completed / 1 remaining**, and exact next task `a-manual-for-noise` at quota **1/2**. The separate read-only workflow is now strengthened to execute the **entire** persistence regression suite on changes, not just the resume-card subset. A fresh **43-test** run is pending at the time of this note.
 
 ## Exact next action and stop condition
 
-1. Inspect the new **Agent-04 verified resume card** CI run and confirm **8/8** tests, full checkpoint verifier, and a read-only **11/12** status. Do not claim success before observing the logs.
+1. Inspect the next **Agent-04 verified resume card** CI run after the workflow update and confirm the complete persistence suite (expected **43/43**), full checkpoint verifier, and read-only **11/12** status. The previous focused **8/8** run already passed.
 2. Inspect the next **actual scheduled Curator's Relay** execution before **19:50 EDT October 25**. If `a-manual-for-noise` publishes, verify **11→12**, exactly one draft/state/journal commit, full current persistence tests, approved queue, `v3.3` provenance, and daily **2/2** cap; then record the final audit, handoff, and Goal 2 comment.
 3. If no eligible scheduled run occurs, preserve **11/12**. **Do not manually dispatch a draft.** No new work after 19:50 EDT; hard stop 20:00 EDT. Work after the challenge requires explicit authorization.
 
