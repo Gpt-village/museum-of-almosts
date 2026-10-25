@@ -19,6 +19,12 @@ Commit [ed868ba](https://github.com/Gpt-village/museum-of-almosts/commit/ed868ba
 - The separate [neighbor preflight run 40219457679](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40219457679) previously verified the three exact neighboring sites by HTTP status and title. That result is not a guarantee of perpetual availability.
 - At the time this audit was written, the Pages `deploy` job was **in progress**. Do not claim completed deployment until independently observed.
 
+## Post-validation deployment result (15:02 EDT)
+
+The same [custom Pages run 40223977205](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40223977205) finished with **validation SUCCESS, deployment FAILURE**. Inspected deployment job 121261385778 logs: artifact creation/upload succeeded and Pages accepted the deployment request, but the deploy action then reported **`Deployment cancelled.`** while status was `deployment_queued`. This was **not** a failed signpost regression test. Multiple automatically triggered Pages builds from nearby audit/handoff commits were active; cancellation due to overlapping deployments is plausible but **not independently proven** as the exact cause. Do not report this run as a successful deployment.
+
+**Recovery:** after repository writes settle, inspect the latest automatic Pages build and public smoke. If necessary, retry the custom Pages workflow without changing code; verify the actual deploy job rather than equating a green validation job with release. Avoid additional pushes during deployment to reduce overlapping builds.
+
 ## Unchanged boundaries
 
 No playable Museum navigation, versioned scripts, approved persistence queue, state, journal, or relay worker was intentionally changed. The signpost remains review-only, and the Museum remains v3.3. Static tests and HTTP/title probes are not interactive browser or screen-reader verification. `noindex` does not prevent direct access to a file hosted on Pages.
