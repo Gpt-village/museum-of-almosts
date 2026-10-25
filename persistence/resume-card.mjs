@@ -45,15 +45,24 @@ export function deriveResumeCard(queue, state, now = new Date()) {
     : !withinHours ? 'outside-operating-window'
     : usedToday >= MAX_PER_DAY ? 'daily-quota-exhausted'
     : 'eligible-for-scheduled-relay';
+  // Terminal status must never imply permission to work after the deadline.
+  // On the final day, 19:50 Eastern closes the *last* possible start window.
+  const lastStartClosed = clock.day === LAST_DAY && clock.minute >= 1190;
   const nextAction = remaining === 0
-    ? 'Audit the final checkpoint and all completed drafts; do not generate another proposal.'
+    ? !withinChallenge
+      ? 'Queue complete; challenge dates have ended. Preserve the final checkpoint; any further audit or development requires explicit authorization.'
+      : !withinHours
+        ? 'Queue complete; outside operating hours. Preserve the final checkpoint and do not start an audit now.'
+        : 'Audit the final checkpoint and all completed drafts; do not generate another proposal.'
     : !withinChallenge
       ? 'Challenge dates are closed. Preserve the checkpoint; any continuation requires a separately authorized plan.'
-      : !withinHours
-        ? 'Wait until the permitted 12:00–19:50 Eastern start window; do not modify the relay checkpoint now.'
-        : usedToday >= MAX_PER_DAY
-          ? 'Daily quota exhausted. Do not force another draft; preserve the checkpoint.'
-          : `Inspect the next actual in-window Curator’s Relay run for ${next.id}; verify its draft/state/journal commit, full persistence test suite, queue order, v3.3 provenance, and daily quota. Do not force a duplicate if delayed.`;
+      : lastStartClosed
+        ? 'The final October 25 start window has closed. Preserve the checkpoint; do not force the remaining proposal. Further work requires explicit authorization.'
+        : !withinHours
+          ? 'Wait until the permitted 12:00–19:50 Eastern start window; do not modify the relay checkpoint now.'
+          : usedToday >= MAX_PER_DAY
+            ? 'Daily quota exhausted. Do not force another draft; preserve the checkpoint.'
+            : `Inspect the next actual in-window Curator’s Relay run for ${next.id}; verify its draft/state/journal commit, full persistence test suite, queue order, v3.3 provenance, and daily quota. Do not force a duplicate if delayed.`;
   return {
     inspectedAt: now.toISOString(), easternDay: clock.day,
     checkpoint: { completed, total, remaining, lastCompleted: state.lastCompleted?.id ?? null },

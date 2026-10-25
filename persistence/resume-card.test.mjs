@@ -56,3 +56,24 @@ test('fails closed on mismatched checkpoint or unsafe queue order', () => {
   s.lastCompleted = null;
   assert.throws(() => deriveResumeCard(queue, s, new Date('2026-10-25T17:03:00Z')), /lastCompleted mismatch/);
 });
+
+test('final-day 19:50 cutoff never promises a nonexistent next start window', () => {
+  const pending = deriveResumeCard(queue, state([entry('first', '2026-10-24')]), new Date('2026-10-25T23:50:00Z'));
+  assert.equal(pending.status, 'outside-operating-window');
+  assert.equal(pending.canStart, false);
+  assert.equal(pending.next.id, 'second');
+  assert.match(pending.nextAction, /final October 25 start window has closed/);
+  assert.match(pending.nextAction, /explicit authorization/);
+});
+
+test('completed queue never recommends an audit outside permitted dates or hours', () => {
+  const finished = state([entry('first', '2026-10-24'), entry('second', '2026-10-24'), entry('third', '2026-10-25')]);
+  const afterHours = deriveResumeCard(queue, finished, new Date('2026-10-26T00:01:00Z'));
+  assert.equal(afterHours.status, 'queue-complete');
+  assert.equal(afterHours.canStart, false);
+  assert.match(afterHours.nextAction, /do not start an audit now/);
+  const expired = deriveResumeCard(queue, finished, new Date('2026-10-26T16:03:00Z'));
+  assert.equal(expired.status, 'queue-complete');
+  assert.equal(expired.canStart, false);
+  assert.match(expired.nextAction, /explicit authorization/);
+});
