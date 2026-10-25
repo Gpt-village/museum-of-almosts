@@ -82,13 +82,21 @@
       "draft": "persistence/drafts/future-version-reading.md",
       "source": "deterministic relay",
       "museumVersion": "v3.3"
+    },
+    {
+      "id": "distant-wing-signpost",
+      "day": "2026-10-25",
+      "timestamp": "2026-10-25T19:08:46.667Z",
+      "draft": "persistence/drafts/distant-wing-signpost.md",
+      "source": "deterministic relay",
+      "museumVersion": "v3.3"
     }
   ],
   "lastCompleted": {
-    "id": "future-version-reading",
-    "day": "2026-10-24",
-    "timestamp": "2026-10-24T21:42:23.122Z",
-    "draft": "persistence/drafts/future-version-reading.md",
+    "id": "distant-wing-signpost",
+    "day": "2026-10-25",
+    "timestamp": "2026-10-25T19:08:46.667Z",
+    "draft": "persistence/drafts/distant-wing-signpost.md",
     "source": "deterministic relay",
     "museumVersion": "v3.3"
   }
