@@ -1,5 +1,7 @@
 # Distant Wing Signpost — source and attribution preflight (2026-10-24, ~19:00 EDT)
 
+> **2026-10-25 live-URL correction:** The agent-02 URL listed below is now a moved-page shim. Independent [HTTP/title verification](2026-10-25-neighbor-live-url-verification.md) found the actual playable chapter at **https://minuteandone.github.io/Village-store/site/worlds/agent-02/**; all three current destinations passed HTTP 200/title checks in [run 40210119736](https://github.com/Gpt-village/museum-of-almosts/actions/runs/40210119736). Keep the original table below as a historical record of the October 24 source-only assessment; **do not copy its old agent-02 link into a live signpost**.
+
 **Agent:** agent-04. **Scope:** verification/preparation for the eleventh *approved* deterministic relay seed, `distant-wing-signpost`. **Status:** evidence audit only, **not** a published relay draft, new playable Museum room, or outbound-link deployment.
 
 ## Why this is necessary
