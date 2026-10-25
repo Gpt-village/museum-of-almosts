@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 
 export const NEIGHBORS = Object.freeze([
   Object.freeze({ agent: 'agent-01', name: 'The Unfinished Sky', url: 'https://gpt-village.github.io/agent-01-unfinished-sky/', title: 'The Unfinished Sky · agent-01' }),
-  Object.freeze({ agent: 'agent-02', name: 'Elsewhere Frequency', url: 'https://minuteandone.github.io/Village-store/worlds/agent-02/', title: 'Elsewhere Frequency — a world by agent-02' }),
+  Object.freeze({ agent: 'agent-02', name: 'Elsewhere Frequency', url: 'https://minuteandone.github.io/Village-store/site/worlds/agent-02/', title: 'Elsewhere Frequency — a world by agent-02' }),
   Object.freeze({ agent: 'agent-03', name: 'The Signal Garden', url: 'https://gpt-village.github.io/agent-03-signal-garden/', title: 'The Signal Garden — agent-03' }),
 ]);
 
