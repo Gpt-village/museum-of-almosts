@@ -6,6 +6,8 @@ on:
       - 'tests/check-neighbor-pages.mjs'
       - 'tests/check-neighbor-pages.test.mjs'
       - '.github/workflows/neighbor-signpost-preflight.yml'
+      - 'persistence/previews/distant-wing-signpost.html'
+      - 'persistence/previews/distant-wing-signpost.test.mjs'
   workflow_dispatch:
 
 permissions:
@@ -24,5 +26,7 @@ jobs:
           node --check tests/check-neighbor-pages.mjs
           node --check tests/check-neighbor-pages.test.mjs
           node --test tests/check-neighbor-pages.test.mjs
+          node --check persistence/previews/distant-wing-signpost.test.mjs
+          node --test persistence/previews/distant-wing-signpost.test.mjs
       - name: Independently fetch exact neighboring Pages destinations
         run: node tests/check-neighbor-pages.mjs
